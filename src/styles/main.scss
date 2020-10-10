@@ -1,0 +1,21 @@
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/base';
+@import 'base/typography';
+
+@import 'components/header/hero';
+@import 'components/header/header';
+@import 'components/header/main-menu';
+@import 'components/about';
+@import 'components/skillset';
+@import 'components/resume';
+@import 'components/portfolio';
+@import 'components/edit-items-container';
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/icons';
+@import 'components/footer';
+
+@import 'layout/layout';
+
+

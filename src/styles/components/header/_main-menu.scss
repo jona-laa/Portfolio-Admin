@@ -1,0 +1,67 @@
+/* Menu */
+.main-menu {
+  @include maxWidth(812px) {
+    text-align: right;
+    z-index: 100;
+    width: 100%;
+  }
+
+  ul {
+    display: flex;
+
+    @include minWidth(813px) {
+      display: flex !important;
+    }
+
+    @include maxWidth(812px) {
+      display: none;
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      margin-top: 50px;
+      background-color: transparent;
+    }
+
+    .menu-link {
+      color: $color-light;
+      font-family: 'poppins', 'sans-serif';
+      font-size: $font-L;
+      padding: 0px 20px;
+      margin: 0 5px;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &:hover {
+        color: darken($color-light, 30%) !important;
+        border-bottom: $color-light 1px solid;
+      }
+
+      &:visited {
+        color: $color-light;
+      }
+    }
+
+    li {
+      @include maxWidth(812px) {
+        display: block;
+        line-height: 3.8rem;
+        z-index: 11111;
+      }
+    }
+  }
+
+  /* Mobile hamburger menu icon */
+  #main-menu-toggle {
+    display: none;
+
+    @include maxWidth(812px) {
+      display: block;
+      position: absolute;
+      right: 15px;
+      top: 17px;
+    }
+  }
+}
+

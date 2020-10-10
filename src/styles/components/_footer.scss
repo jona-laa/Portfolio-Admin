@@ -1,0 +1,12 @@
+/* Footer */
+footer {
+  @include flex();
+  justify-content: space-around;
+  min-height: 160px;
+  padding: $padding-div;
+  text-align: center;
+
+  small {
+    font-size: $font-XS;
+  }
+}

@@ -1,0 +1,36 @@
+#edit-items_container {
+  @include flex(row, wrap);
+  justify-content: center;
+  margin: auto;
+  max-width: 1200px;
+}
+
+.trio {
+  text-align: center;
+
+  div {
+    padding: 10px 20px;
+    width: 33%;
+
+    @include maxWidth(768px) {
+      width: 50%;
+    }
+
+    @include maxWidth(550px) {
+      width: 100%;
+    }
+
+    p {
+      max-width: 500px;
+      margin: 10px auto;
+    }
+  }
+
+}
+
+.edit-items_controls {
+    margin: auto;
+    padding: 10px 20px 50px;
+    text-align: center;
+    width: 500px;
+}

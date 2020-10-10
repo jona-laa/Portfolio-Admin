@@ -1,0 +1,29 @@
+/* Write 'inline' media queries */
+@mixin maxWidth($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin minWidth($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+/* Flexbox */
+@mixin flex($dir: column, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $dir;
+  flex-wrap: $wrap;
+}
+
+@mixin light-theme($light) {
+  @if $light {
+    background-color: $bg-light;
+    color: $color-dark;
+  } @else {
+    background-color: $bg-dark;
+    color: $color-light;
+  }
+}

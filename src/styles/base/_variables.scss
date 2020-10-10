@@ -1,0 +1,42 @@
+/* Color scheme */
+$darkblue: rgb(18, 29, 35);
+$offwhite: #f7f7f7;
+$black: #272727;
+
+/* Icon Colors */
+$react-blue: rgb(116, 210, 247);
+$angular-red: rgb(171, 35, 44);
+$vue-green: rgb(74, 182, 121);
+$node-green: rgb(104, 147, 93);
+$php-purple: rgb(105, 108, 161);
+$python-blue: rgb(54, 94, 139);
+$python-yellow: rgb(249, 212, 83);
+
+/* Font sizing */
+$font-XS: 1.2rem;
+$font-S: 1.4rem;
+$font-M: 1.6rem;
+$font-L: 1.8rem;
+$font-XL: 2rem;
+$font-XXL: 2.2rem;
+$font-XXXL: 3rem;
+$font-XXXXL: 4.2rem;
+$font-h1: 5.5rem;
+$font-h2: 4rem;
+
+/* Font fams */
+$font-main: 'Quicksand', sans-serif;
+$font-logo: 'Times New Roman', serif;
+
+/* Font colors */
+$color-dark: $black;
+$color-light: $offwhite;
+
+/* Background colors */
+$bg-light: $offwhite;
+$bg-dark: $darkblue;
+
+/* Standardized padding */
+$padding-div: 20px;
+$padding-section: 50px 20px;
+$padding-heading: 25px 20px;

@@ -1,0 +1,14 @@
+/* Background/Text Colors */
+.bg-light {
+  background: $bg-light;
+  color: $color-dark;
+}
+
+.bg-dark {
+  background-color: $bg-dark;
+  color: $color-light;
+}
+
+.section-padding {
+  padding: $padding-section;
+}
