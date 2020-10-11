@@ -1,4 +1,7 @@
 /********** GET **********/
+
+// const { create } = require('browser-sync');
+
 /* Gets data and creates appropriate element
   * @param        {string}        url                 API-url
   * @param        {function}      createElement       createBio/Skills/Work/Studies/Portfolio
@@ -16,15 +19,15 @@ const fetchAndCreate = (url, createElement) => {
 * @param   {object}     e       Event object
 * @param   {number}     [id]    ID of course to update(updateId)
 */
-const updateOrAdd = (e, id, url, fetchData) => {
+const updateOrAdd = (e, id, url, fetchData, createElements) => {
     e.preventDefault()
-    id ? updatePost(id, url, fetchData) : addPost(url, fetchData);
+    id ? updatePost(id, url, fetchData, createElements) : addPost(url, fetchData, createElements);
 }
 
 
 
 /********** GET **********/
-const addPost = (url, fetchData) => {
+const addPost = (url, fetchData, createElements) => {
     fetch(url,
         {
             method: 'POST',
@@ -40,14 +43,14 @@ const addPost = (url, fetchData) => {
         .then(res => res.json())
         // .then(feedback => userFeedback(feedback, '.feedback'))
         .then(data => resetForm())
-        .then(data => fetchAndCreate(url, createBio))
+        .then(data => fetchAndCreate(url, createElements))
         .catch(e => console.error(e))
 }
 
 
 
 // updateId, url, fetchObject
-const updatePost = (id, url, fetchData) => {
+const updatePost = (id, url, fetchData, createElements) => {
     // Fetch
     console.log(`PUT req on id ${id} to ${url}`);
 
@@ -66,14 +69,14 @@ const updatePost = (id, url, fetchData) => {
         .then(res => res.json())
         // .then(json => userFeedback(json, '#feedback'))
         .then(data => resetForm())
-        .then(data => fetchAndCreate(url, createBio))
+        .then(data => fetchAndCreate(url, createElements))
         .catch(e => console.error(e))
 }
 
 
 
 /********** DELETE **********/
-const deletePost = (id, url) => {
+const deletePost = (id, url, createElements) => {
     confirmIt('delete post') ? fetch(`${url}?id=${id}`,
         {
             method: 'DELETE',
@@ -86,6 +89,6 @@ const deletePost = (id, url) => {
         .then(res => res.json())
         // .then(feedback => userFeedback(feedback, '.feedback'))
         .then(data => resetForm())
-        .then(data => fetchAndCreate(url, createBio))
+        .then(data => fetchAndCreate(url, createElements))
         .catch(e => console.error(e)) : null;
 }

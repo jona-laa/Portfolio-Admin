@@ -16,10 +16,10 @@ const createBio = (fetchData) => {
   editSection.innerHTML = aboutFormHtml();
 
   // Initiate Input Variables
-  inputHeading = document.querySelector('#heading');
-  inputImage = document.querySelector('#image');
-  inputBio = document.querySelector('#bio');
-  inputPublished = document.querySelector('#published');
+  inputAboutHeading = document.querySelector('#heading');
+  inputAboutImage = document.querySelector('#image');
+  inputAboutBio = document.querySelector('#bio');
+  inputAboutPublished = document.querySelector('#published');
 };
 
 
@@ -40,6 +40,10 @@ const createSkills = (fetchData) => {
 
   // Create Form
   editSection.innerHTML = skillsFormHtml();
+
+  // Initiate Input Variables
+  inputSkillsSkill = document.querySelector('#skill');
+  inputSkillsIcon = document.querySelector('#icon');
 
 };
 
@@ -105,13 +109,3 @@ const createPortfolio = (fetchData) => {
   editSection.innerHTML = portfolioFormHtml();
 
 };
-
-
-
-// window.addEventListener("load",
-//   fetchAndCreate(aboutUrl, createBio),
-//   fetchAndCreate(skillsUrl, createSkills),
-//   fetchAndCreate(workUrl, createWork),
-//   fetchAndCreate(studiesUrl, createStudies),
-//   fetchAndCreate(portfolioUrl, createPortfolio)
-// );

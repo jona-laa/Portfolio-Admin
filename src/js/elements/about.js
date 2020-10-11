@@ -21,7 +21,7 @@ const aboutItemHtml = (id, heading, bio, image, published) =>
   </div>
 
   <div class="edit-items_controls">
-  <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, aboutUrl)"><i class="fas fa-trash-alt fa-1x"></i></button>
+  <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, aboutUrl, createAbout)"><i class="fas fa-trash-alt fa-1x"></i></button>
   <button class="btn update" id="update-${id}" value="update" onclick="initAboutUpdate(${id}, aboutUrl)"><i class="fas fa-edit fa-1x"></i></button>
   </div>
 `;
@@ -31,28 +31,29 @@ const aboutItemHtml = (id, heading, bio, image, published) =>
 /* FORM */
 // Input Elements
 let
-  inputHeading,
-  inputImage,
-  inputBio,
-  inputPublished;
+  inputAboutHeading,
+  inputAboutImage,
+  inputAboutBio,
+  inputAboutPublished;
 
 
 // Object to send for POST(id) or PUT
 const aboutFetchObject = (id) =>
   id ? {
     id: id,
-    heading: inputHeading.value,
-    img_src: inputImage.value,
-    bio: inputBio.value,
-    published: inputPublished.checked ? true : false
+    heading: inputAboutHeading.value,
+    img_src: inputAboutImage.value,
+    bio: inputAboutBio.value,
+    published: inputAboutPublished.checked ? true : false
   } : {
-      heading: inputHeading.value,
-      img_src: inputImage.value,
-      bio: inputBio.value,
-      published: inputPublished.checked ? true : false
+      heading: inputAboutHeading.value,
+      img_src: inputAboutImage.value,
+      bio: inputAboutBio.value,
+      published: inputAboutPublished.checked ? true : false
     };
 
 
+// Get post and auto fill input fields
 const initAboutUpdate = (id, url) => {
   updateId = id;
 
@@ -61,10 +62,10 @@ const initAboutUpdate = (id, url) => {
     .then(data => {
       const { id, heading, bio, img_src, published } = data.bios[0];
 
-      inputHeading.value = heading;
-      inputBio.value = bio;
-      inputImage.value = img_src;
-      inputPublished.checked = published == 1 ? true : false;
+      inputAboutHeading.value = heading;
+      inputAboutBio.value = bio;
+      inputAboutImage.value = img_src;
+      inputAboutPublished.checked = published == 1 ? true : false;
 
       window.scrollTo(0, document.body.scrollHeight);
     })
@@ -91,7 +92,7 @@ const aboutFormHtml = () => `
             <span id="feedback-message"></span>
         </div>
         <div class="form_buttons">
-            <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, aboutUrl, aboutFetchObject)"> 
+            <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, aboutUrl, aboutFetchObject, createBio)"> 
 
             <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
         </div>
