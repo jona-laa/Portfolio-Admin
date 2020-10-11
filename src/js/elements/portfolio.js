@@ -74,7 +74,9 @@ const portfolioFormHtml = () => `
           <label for="image">Image</label>
           <input type="text" name="image" id="image" placeholder="Image" required>
         </div>
-        <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, portfolioUrl, portfolioFetchObject, createPortfolio)"> 
-        <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
+        <div class="form_buttons">
+          <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, portfolioUrl, portfolioFetchObject, createPortfolio)"> 
+          <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
+        </div>
       </form>
   `;

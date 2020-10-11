@@ -1,5 +1,5 @@
 /* STUDIES */
-// Post
+// Post HTML
 const studiesHtml = (id, title, institution, start, end, descr) => `
       <div class="resume-item">
         <h4>${title}</h4>
@@ -7,12 +7,62 @@ const studiesHtml = (id, title, institution, start, end, descr) => `
         <span>${start} – ${end}</span>
         <p>${descr}</p>
 
-        <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id})"><i class="fas fa-trash-alt fa-1x"></i></button>
-        <button class="btn update" id="update-${id}" value="update" onclick="initUpdate(${id})"><i class="fas fa-edit fa-1x"></i></button>
+        <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, studiesUrl, createStudies)"><i class="fas fa-trash-alt fa-1x"></i></button>
+        <button class="btn update" id="update-${id}" value="update" onclick="initStudiesUpdate(${id}, studiesUrl)"><i class="fas fa-edit fa-1x"></i></button>
       </div>
     `;
 
-// Form
+
+
+/* FORM */
+// Input Elements
+let
+  inputStudiesTitle,
+  inputStudiesInstitution,
+  inputStudiesStart,
+  inputStudiesEnd,
+  inputStudiesDescr;
+
+
+// Object to send for POST(id) or PUT
+const studiesFetchObject = (id) =>
+  id ? {
+    id: id,
+    title: inputStudiesTitle.value,
+    institution: inputStudiesInstitution.value,
+    date_start: inputStudiesStart.value,
+    date_end: inputStudiesEnd.value,
+    descr: inputStudiesDescr.value
+  } : {
+      title: inputStudiesTitle.value,
+      institution: inputStudiesInstitution.value,
+      date_start: inputStudiesStart.value,
+      date_end: inputStudiesEnd.value,
+      descr: inputStudiesDescr.value
+    };
+
+
+// Get post and auto fill input fields
+const initStudiesUpdate = (id, url) => {
+  updateId = id;
+
+  fetch(`${url}?id=${id}`)
+    .then(res => res.json())
+    .then(data => {
+      const { id, title, institution, date_start, date_end, descr } = data.courses[0];
+
+      inputStudiesTitle.value = title;
+      inputStudiesInstitution.value = institution;
+      inputStudiesStart.value = date_start;
+      inputStudiesEnd.value = date_end;
+      inputStudiesDescr.value = descr;
+
+      window.scrollTo(0, document.body.scrollHeight);
+    })
+}
+
+
+// Form HTML
 const studiesFormHtml = () => `
       <form class="edit-form">
         <div>
@@ -35,7 +85,7 @@ const studiesFormHtml = () => `
           <label for="descr">Description</label>
           <input type="text" name="descr" id="descr" placeholder="Description" required>
         </div>
-        <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, studiesUrl)"> 
+        <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, studiesUrl, studiesFetchObject, createStudies)"> 
         <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
       </form>
   `;

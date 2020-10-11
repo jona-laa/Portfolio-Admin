@@ -61,8 +61,10 @@ const skillsFormHtml = () => `
           <label for="icon">Icon</label>
           <input type="text" name="icon" id="icon" placeholder="Icon" required>
         </div>
-        <input type="submit" value="Submit" id="submit" class="btn" 
+        <div class="form_buttons">
+          <input type="submit" value="Submit" id="submit" class="btn" 
         onclick="updateOrAdd(event, updateId, skillsUrl, skillsFetchObject, createSkills)"> 
-        <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
-      </form>
+          <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
+        </div>
+        </form>
   `

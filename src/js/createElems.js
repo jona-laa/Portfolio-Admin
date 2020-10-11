@@ -87,6 +87,13 @@ const createStudies = (fetchData) => {
   // Create Form
   editSection.innerHTML = studiesFormHtml();
 
+  // Initiate Input Variables
+  inputStudiesTitle = document.querySelector('#title');
+  inputStudiesInstitution = document.querySelector('#institution');
+  inputStudiesStart = document.querySelector('#start-date');
+  inputStudiesEnd = document.querySelector('#end-date');
+  inputStudiesDescr = document.querySelector('#descr');
+
 };
 
 
