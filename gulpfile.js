@@ -28,7 +28,7 @@ const path = {
   html: 'src/**/*.html',
   css: 'src/styles/**/*.css',
   scss: 'src/styles/**/*.scss',
-  js: 'src/js/*.js',
+  js: 'src/js/**/*.js',
   images: 'src/images/*',
   dist: 'dist'
 }
@@ -41,12 +41,16 @@ const cleanDist = async () => {
   await deleteDist(path.dist);
 }
 
+
+
 // HTML Task - minify
 const html = async () => {
   await src(path.html)
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(dest(path.dist))
 }
+
+
 
 // STYLES Task
 const styles = async () => {
@@ -72,16 +76,22 @@ const styles = async () => {
     .pipe(dest(path.dist))
 }
 
+
+
 // JS Task - ES6 to ES5 + uglify
 const js = async () => {
   await src(path.js)
+    .pipe(sourceMaps.init())
     .pipe(babel({
       presets: ['@babel/env']
     }))
     .pipe(concat('/js/main.js'))
     .pipe(uglify())
+    .pipe(sourceMaps.write())
     .pipe(dest(`${path.dist}`))
 }
+
+
 
 // Images Task - Minify
 const images = () => {
@@ -90,11 +100,15 @@ const images = () => {
     .pipe(dest(`${path.dist}/images`))
 }
 
+
+
 // Favicon Task
 const favicon = () => {
   return src('src/favicon.ico')
     .pipe(dest(path.dist))
 }
+
+
 
 // File watch - Reload browser on file changes
 const watcher = async () => {
@@ -105,6 +119,8 @@ const watcher = async () => {
   await watch(path.images).on('change', series(images, browserSync.reload))
 }
 
+
+
 // Run Live Server
 const server = async () => {
   await browserSync.init({
@@ -114,6 +130,8 @@ const server = async () => {
     }
   })
 }
+
+
 
 exports.default = series(
   cleanDist,

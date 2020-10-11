@@ -1,9 +1,3 @@
-// DOM element selectors
-const header = document.querySelector('.header-content');
-const toTopBtn = document.querySelector('#goTop');
-const mainMenu = document.querySelector('#menu-main-menu');
-
-
 // Hide header & to top on scroll
 window.onscroll = () => {
   hideMenu();

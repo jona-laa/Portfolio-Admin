@@ -1,31 +1,3 @@
-// Output Elements
-const
-  editItemsContainer = document.querySelector('#edit-items_container');
-
-
-// API URLs
-const aboutUrl = 'http://localhost:8080/portfolio/api/bio';
-const skillsUrl = 'http://localhost:8080/portfolio/api/skills';
-const workUrl = 'http://localhost:8080/portfolio/api/jobs';
-const studiesUrl = 'http://localhost:8080/portfolio/api/courses';
-const portfolioUrl = 'http://localhost:8080/portfolio/api/projects';
-
-
-
-/********** GET **********/
-/* Gets data and creates appropriate element
-  * @param        {string}        url                 API-url
-  * @param        {function}      createElement       createBio/Skills/Work/Studies/Portfolio
-*/
-const fetchAndCreate = (url, createElement) => {
-  fetch(url)
-    .then(res => res.json())
-    .then(data => createElement(data))
-    .catch(e => console.error(e))
-};
-
-
-
 /* Creates About Section
   * @param        {object}        fetchData       fetchData.bios[0].id/heading/bio/img_src
 */
@@ -37,8 +9,16 @@ const createBio = (fetchData) => {
   const bios = fetchData.bios;
 
   bios.forEach(bio => {
-    editItemsContainer.innerHTML += aboutHtml(bio.id, bio.heading, bio.bio, bio.img_src, bio.published);
+    editItemsContainer.innerHTML += aboutItemHtml(bio.id, bio.heading, bio.bio, bio.img_src, bio.published);
   });
+
+  // Create Form
+  editSection.innerHTML = aboutFormHtml();
+
+  // Initiate Input Variables
+  inputHeading = document.querySelector('#heading');
+  inputImage = document.querySelector('#image')
+  inputBio = document.querySelector('#bio')
 };
 
 
@@ -56,6 +36,10 @@ const createSkills = (fetchData) => {
   skills.forEach(skill => {
     editItemsContainer.innerHTML += skillsHtml(skill.id, skill.skill, skill.icon);
   })
+
+  // Create Form
+  editSection.innerHTML = skillsFormHtml();
+
 };
 
 
@@ -73,6 +57,10 @@ const createWork = (fetchData) => {
   jobs.forEach(job => {
     editItemsContainer.innerHTML += workHtml(job.id, job.company, job.title, job.date_start, job.date_end, job.descr);
   });
+
+  // Create Form
+  editSection.innerHTML = workFormHtml();
+
 };
 
 
@@ -90,6 +78,10 @@ const createStudies = (fetchData) => {
   courses.forEach(course => {
     editItemsContainer.innerHTML += studiesHtml(course.id, course.title, course.institution, course.date_start, course.date_end, course.descr);
   });
+
+  // Create Form
+  editSection.innerHTML = studiesFormHtml();
+
 };
 
 
@@ -107,6 +99,10 @@ const createPortfolio = (fetchData) => {
   projects.forEach(project => {
     editItemsContainer.innerHTML += portfolioHtml(project.id, project.title, project.prj_url, project.descr, project.img_src);
   });
+
+  // Create Form
+  editSection.innerHTML = portfolioFormHtml();
+
 };
 
 
