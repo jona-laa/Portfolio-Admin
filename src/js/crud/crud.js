@@ -40,7 +40,7 @@ const addPost = (url, fetchData) => {
         .then(res => res.json())
         // .then(feedback => userFeedback(feedback, '.feedback'))
         .then(data => resetForm())
-        .then(data => fetchAndCreate(aboutUrl, createBio))
+        .then(data => fetchAndCreate(url, createBio))
         .catch(e => console.error(e))
 }
 
@@ -66,7 +66,7 @@ const updatePost = (id, url, fetchData) => {
         .then(res => res.json())
         // .then(json => userFeedback(json, '#feedback'))
         .then(data => resetForm())
-        .then(data => fetchAndCreate(aboutUrl, createBio))
+        .then(data => fetchAndCreate(url, createBio))
         .catch(e => console.error(e))
 }
 
@@ -86,6 +86,6 @@ const deletePost = (id, url) => {
         .then(res => res.json())
         // .then(feedback => userFeedback(feedback, '.feedback'))
         .then(data => resetForm())
-        .then(data => fetchAndCreate(aboutUrl, createBio))
+        .then(data => fetchAndCreate(url, createBio))
         .catch(e => console.error(e)) : null;
 }
