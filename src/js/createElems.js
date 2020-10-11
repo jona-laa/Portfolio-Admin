@@ -108,4 +108,10 @@ const createPortfolio = (fetchData) => {
   // Create Form
   editSection.innerHTML = portfolioFormHtml();
 
+  // Initiate Input Variables
+  inputPortfolioTitle = document.querySelector('#title');
+  inputPortfoliUrl = document.querySelector('#url');
+  inputPortfolioDescr = document.querySelector('#descr');
+  inputPortfolioImage = document.querySelector('#image');
+
 };
