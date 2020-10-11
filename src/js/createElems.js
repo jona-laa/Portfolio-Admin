@@ -66,6 +66,13 @@ const createWork = (fetchData) => {
   // Create Form
   editSection.innerHTML = workFormHtml();
 
+  // Initiate Input Variables
+  inputWorkCompany = document.querySelector('#company');
+  inputWorkTitle = document.querySelector('#title');
+  inputWorkStart = document.querySelector('#start-date');
+  inputWorkEnd = document.querySelector('#end-date');
+  inputWorkDescr = document.querySelector('#descr');
+
 };
 
 
