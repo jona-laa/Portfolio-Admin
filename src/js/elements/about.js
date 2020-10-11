@@ -1,30 +1,77 @@
 /* ABOUT */
-// Post
-const aboutItemHtml = (id, heading, bio, image, published) =>
-    `
-      <div class="about-container">
-  
-        <div class="avatar-container">
-          <div class="avatar" style="background: url('${image}') no-repeat center center/cover"></div>
-        </div>
-  
-        <div>
-          <div>
-            <h3>${heading}</h3>
-            <p>${bio}</p>
-            <p>Published: ${published == 0 ? 'No' : 'Yes'}</p>
-          </div>
-        </div>
-  
-      </div>
-      
-      <div class="edit-items_controls">
-        <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, aboutUrl)"><i class="fas fa-trash-alt fa-1x"></i></button>
-        <button class="btn update" id="update-${id}" value="update" onclick="initUpdate(${id}, aboutUrl)"><i class="fas fa-edit fa-1x"></i></button>
-      </div>
-    `;
 
-// Form
+/* POST */
+// Post HTML
+const aboutItemHtml = (id, heading, bio, image, published) =>
+  `
+  <div class="about-container">
+
+  <div class="avatar-container">
+  <div class="avatar" style="background: url('${image}') no-repeat center center/cover"></div>
+  </div>
+
+  <div>
+  <div>
+  <h3>${heading}</h3>
+  <p>${bio}</p>
+  <p>Published: ${published == 0 ? 'No' : 'Yes'}</p>
+  </div>
+  </div>
+
+  </div>
+
+  <div class="edit-items_controls">
+  <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, aboutUrl)"><i class="fas fa-trash-alt fa-1x"></i></button>
+  <button class="btn update" id="update-${id}" value="update" onclick="initAboutUpdate(${id}, aboutUrl)"><i class="fas fa-edit fa-1x"></i></button>
+  </div>
+`;
+
+
+
+/* FORM */
+// Input Elements
+let
+  inputHeading,
+  inputImage,
+  inputBio,
+  inputPublished;
+
+
+// Object to send for POST(id) or PUT
+const aboutFetchObject = (id) =>
+  id ? {
+    id: id,
+    heading: inputHeading.value,
+    img_src: inputImage.value,
+    bio: inputBio.value,
+    published: inputPublished.checked ? true : false
+  } : {
+      heading: inputHeading.value,
+      img_src: inputImage.value,
+      bio: inputBio.value,
+      published: inputPublished.checked ? true : false
+    };
+
+
+const initAboutUpdate = (id, url) => {
+  updateId = id;
+
+  fetch(`${url}?id=${id}`)
+    .then(res => res.json())
+    .then(data => {
+      const { id, heading, bio, img_src, published } = data.bios[0];
+
+      inputHeading.value = heading;
+      inputBio.value = bio;
+      inputImage.value = img_src;
+      inputPublished.checked = published == 1 ? true : false;
+
+      window.scrollTo(0, document.body.scrollHeight);
+    })
+}
+
+
+// Form HTML
 const aboutFormHtml = () => `
       <form class="edit-form">
         <div>
@@ -44,7 +91,7 @@ const aboutFormHtml = () => `
             <span id="feedback-message"></span>
         </div>
         <div class="form_buttons">
-            <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, aboutUrl)"> 
+            <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, aboutUrl, aboutFetchObject)"> 
 
             <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
         </div>

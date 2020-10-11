@@ -16,15 +16,15 @@ const fetchAndCreate = (url, createElement) => {
 * @param   {object}     e       Event object
 * @param   {number}     [id]    ID of course to update(updateId)
 */
-const updateOrAdd = (e, id, url) => {
+const updateOrAdd = (e, id, url, fetchData) => {
     e.preventDefault()
-    id ? updatePost(id, url) : addPost(url);
+    id ? updatePost(id, url, fetchData) : addPost(url, fetchData);
 }
 
 
 
 /********** GET **********/
-const addPost = (url) => {
+const addPost = (url, fetchData) => {
     fetch(url,
         {
             method: 'POST',
@@ -33,12 +33,7 @@ const addPost = (url) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(
-                {
-                    heading: inputHeading.value,
-                    img_src: inputImage.value,
-                    bio: inputBio.value,
-                    published: inputPublished.checked ? true : false
-                }
+                fetchData()
             ),
         }
     )
@@ -51,31 +46,8 @@ const addPost = (url) => {
 
 
 
-/********** UPDATE **********/
-const initUpdate = (id, url) => {
-    // 1. Update updateId
-    updateId = id;
-    console.log('init update on id:', updateId);
-    console.log('to url:', url)
-    // 2. Fetch data
-    fetch(`${url}?id=${id}`)
-        .then(res => res.json())
-        .then(data => {
-            const { id, heading, bio, img_src, published } = data.bios[0];
-
-            // 3. Fill input fields
-            inputHeading.value = heading;
-            inputBio.value = bio;
-            inputImage.value = img_src;
-            inputPublished.checked = published == 1 ? true : false;
-
-            window.scrollTo(0, document.body.scrollHeight);
-        })
-}
-
-
-
-const updatePost = (id, url) => {
+// updateId, url, fetchObject
+const updatePost = (id, url, fetchData) => {
     // Fetch
     console.log(`PUT req on id ${id} to ${url}`);
 
@@ -87,13 +59,7 @@ const updatePost = (id, url) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(
-                {
-                    id: id,
-                    heading: inputHeading.value,
-                    bio: inputBio.value,
-                    img_src: inputImage.value,
-                    published: inputPublished.checked ? true : false
-                }
+                fetchData(id)
             ),
         }
     )

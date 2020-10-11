@@ -9,12 +9,8 @@ const
     editItemsContainer = document.querySelector('#edit-items_container'),
     editSection = document.querySelector('#edit');
 
-// Input Elements
+// User Feedback Elements
 let
-    inputHeading,
-    inputImage,
-    inputBio,
-    inputPublished,
     feedbackDiv,
     feedbackMessage;
 
