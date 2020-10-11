@@ -25,9 +25,6 @@ const updateOrAdd = (e, id, url) => {
 
 /********** GET **********/
 const addPost = (url) => {
-    console.log(`POST req to ${url}`);
-    console.log(inputHeading.value, inputImage.value, inputBio.value)
-
     fetch(url,
         {
             method: 'POST',
@@ -39,7 +36,8 @@ const addPost = (url) => {
                 {
                     heading: inputHeading.value,
                     img_src: inputImage.value,
-                    bio: inputBio.value
+                    bio: inputBio.value,
+                    published: inputPublished.checked ? true : false
                 }
             ),
         }
@@ -54,11 +52,25 @@ const addPost = (url) => {
 
 
 /********** UPDATE **********/
-const initUpdate = (id) => {
+const initUpdate = (id, url) => {
+    // 1. Update updateId
     updateId = id;
-    console.log('init update', id, updateId)
+    console.log('init update on id:', updateId);
+    console.log('to url:', url)
     // 2. Fetch data
-    // 3. Fill input fields
+    fetch(`${url}?id=${id}`)
+        .then(res => res.json())
+        .then(data => {
+            const { id, heading, bio, img_src, published } = data.bios[0];
+
+            // 3. Fill input fields
+            inputHeading.value = heading;
+            inputBio.value = bio;
+            inputImage.value = img_src;
+            inputPublished.checked = published == 1 ? true : false;
+
+            window.scrollTo(0, document.body.scrollHeight);
+        })
 }
 
 
@@ -66,14 +78,37 @@ const initUpdate = (id) => {
 const updatePost = (id, url) => {
     // Fetch
     console.log(`PUT req on id ${id} to ${url}`);
+
+    fetch(url,
+        {
+            method: 'PUT',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    id: id,
+                    heading: inputHeading.value,
+                    bio: inputBio.value,
+                    img_src: inputImage.value,
+                    published: inputPublished.checked ? true : false
+                }
+            ),
+        }
+    )
+        .then(res => res.json())
+        // .then(json => userFeedback(json, '#feedback'))
+        .then(data => resetForm())
+        .then(data => fetchAndCreate(aboutUrl, createBio))
+        .catch(e => console.error(e))
 }
 
 
 
 /********** DELETE **********/
 const deletePost = (id, url) => {
-    // console.log('delete post', url, id);
-    confirmIt('delete course') ? fetch(`${url}?id=${id}`,
+    confirmIt('delete post') ? fetch(`${url}?id=${id}`,
         {
             method: 'DELETE',
             mode: 'cors',

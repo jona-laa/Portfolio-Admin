@@ -17,8 +17,9 @@ const createBio = (fetchData) => {
 
   // Initiate Input Variables
   inputHeading = document.querySelector('#heading');
-  inputImage = document.querySelector('#image')
-  inputBio = document.querySelector('#bio')
+  inputImage = document.querySelector('#image');
+  inputBio = document.querySelector('#bio');
+  inputPublished = document.querySelector('#published');
 };
 
 

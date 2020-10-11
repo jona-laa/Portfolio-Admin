@@ -8,13 +8,6 @@
       center/cover;
   padding: $padding-section;
 
-  // Social icons. May or may not be used.
-  // .contact-icons {
-  //   margin: auto;
-  //   text-align: center;
-  //   width: 300px;
-  // }
-
   form {
     justify-content: space-between;
     margin: auto;
@@ -54,6 +47,19 @@
 
     textarea {
       height: 150px;
+    }
+
+    .form_checkbox {
+      width: 40px;
+      
+      label {
+        display: inline;
+      }
+    }
+
+    .form_buttons {
+      width: 100%;
+      @include flex(row);
     }
 
     .btn {
