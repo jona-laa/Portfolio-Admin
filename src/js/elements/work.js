@@ -97,7 +97,9 @@ const workFormHtml = () => `
           <label for="descr">Description</label>
           <input type="text" name="descr" id="descr" placeholder="Description" required>
         </div>
-        <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, workUrl, workFetchObject, createWork)"> 
-        <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
+        <div class="form_buttons">
+          <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, workUrl, workFetchObject, createWork)"> 
+          <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
+        </div>
       </form>
   `;
