@@ -6,11 +6,17 @@
   * @param   {string}     descr           Project Description
 */
 const portfolioHtml = (id, title, url, descr, image) => `
+      
       <div class="portfolio-item">
         <img src="${image}" alt="" />
+        <h3>${title}</h3>
+        <a href="${url}" target="_blank">${url}</a>
+        <p>${descr}</p>
 
-        <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, portfolioUrl, createPortfolio)"><i class="fas fa-trash-alt fa-1x"></i></button>
-        <button class="btn update" id="update-${id}" value="update" onclick="initPortfolioUpdate(${id}, portfolioUrl)"><i class="fas fa-edit fa-1x"></i></button>
+        <div class="edit-items_controls">
+          <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, portfolioUrl, createPortfolio)"><i class="fas fa-trash-alt fa-1x"></i></button>
+          <button class="btn update" id="update-${id}" value="update" onclick="initPortfolioUpdate(${id}, portfolioUrl)"><i class="fas fa-edit fa-1x"></i></button>
+        </div>
       </div>
     `;
 
