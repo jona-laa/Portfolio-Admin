@@ -16,8 +16,11 @@ const fetchAndCreate = (url, createElement) => {
 
 
 /* "Routes" functionality of Send button
-* @param   {object}     e       Event object
-* @param   {number}     [id]    ID of course to update(updateId)
+  * @param   {object}     e               Event object
+  * @param   {number}     id              ID of post to update(updateId)
+  * @param   {string}     url             API-url
+  * @param   {object}     fetchData       Data object to be sent to API endpoint
+  * @param   {function}   createElements  Creates post elements, e.g. createPortfolio
 */
 const updateOrAdd = (e, id, url, fetchData, createElements) => {
     e.preventDefault()
@@ -27,6 +30,12 @@ const updateOrAdd = (e, id, url, fetchData, createElements) => {
 
 
 /********** GET **********/
+
+/* Sends POST req, with data object to chosen endpoint
+  * @param   {string}     url             API-url
+  * @param   {object}     fetchData       Data object to be sent to API endpoint
+  * @param   {function}   createElements  Creates post elements, e.g. createPortfolio
+*/
 const addPost = (url, fetchData, createElements) => {
     fetch(url,
         {
@@ -49,7 +58,12 @@ const addPost = (url, fetchData, createElements) => {
 
 
 
-// updateId, url, fetchObject
+/* Sends PUT req, with data object to chosen endpoint
+  * @param   {number}     id              ID of post to update(updateId)
+  * @param   {string}     url             API-url
+  * @param   {object}     fetchData       Data object to be sent to API endpoint
+  * @param   {function}   createElements  Creates post elements, e.g. createPortfolio
+*/
 const updatePost = (id, url, fetchData, createElements) => {
     // Fetch
     console.log(`PUT req on id ${id} to ${url}`);
@@ -76,6 +90,12 @@ const updatePost = (id, url, fetchData, createElements) => {
 
 
 /********** DELETE **********/
+
+/* Sends DELETE req to chosen endpoint, and reloads DOM with new data
+  * @param   {number}     id              ID of post to update(updateId)
+  * @param   {string}     url             API-url
+  * @param   {function}   createElements  Creates post elements, e.g. createPortfolio
+*/
 const deletePost = (id, url, createElements) => {
     confirmIt('delete post') ? fetch(`${url}?id=${id}`,
         {

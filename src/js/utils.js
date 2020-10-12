@@ -14,6 +14,10 @@ let
     feedbackDiv,
     feedbackMessage;
 
+// Edit Form Element
+let
+    editForm;
+
 // API URLs
 const aboutUrl = 'http://localhost:8080/portfolio/api/bio';
 const skillsUrl = 'http://localhost:8080/portfolio/api/skills';
@@ -26,6 +30,7 @@ let updateId;
 
 
 
+// Resets DOM element with cetegory items
 const resetDOM = () => {
     updateId = null;
     editItemsContainer.innerHTML = '';
@@ -33,22 +38,25 @@ const resetDOM = () => {
 
 
 
-const resetForm = () => {
-    updateId = null;
-    console.log('reset form')
-    // Empty input fields
-}
-
-
+/* Cancels Form and resets inputs on confitm
+* @param    {string}     e      Event object
+*/
 const cancelForm = (e) => {
     e.preventDefault();
     confirmIt('cancel') ? resetForm() : null;
 }
 
 
+// Empties form inputs
+const resetForm = () => {
+    updateId = null;
+    editForm.reset();
+}
+
+
 
 /* Confirm Pop-Up
-  * @param   {string}          action    E.g 'proceed' -> 'Sure you want to proceed?'
+  * @param      {string}        action      E.g 'cencel' -> 'Sure you want to cencel?'
 */
 const confirmIt = (action) => window.confirm(`Sure you want to ${action}?`);
 

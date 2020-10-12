@@ -64,7 +64,7 @@ const initWorkUpdate = (id, url) => {
 
 // Form
 const workFormHtml = () => `
-      <form class="edit-form">
+      <form id="edit-form">
         <div>
           <label for="company">Company</label>
           <input type="text" name="company" id="company" placeholder="Company" required>

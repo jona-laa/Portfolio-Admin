@@ -52,7 +52,7 @@ const initSkillsUpdate = (id, url) => {
 
 // Form HTML
 const skillsFormHtml = () => `
-      <form class="edit-form">
+      <form id="edit-form">
         <div>
           <label for="skill">Skill</label>
           <input type="text" name="skill" id="skill" placeholder="Skill" required>

@@ -57,7 +57,7 @@ const initPortfolioUpdate = (id, url) => {
 
 // Form HTML
 const portfolioFormHtml = () => `
-      <form class="edit-form">
+      <form id="edit-form">
         <div>
           <label for="title">Title</label>
           <input type="text" name="title" id="title" placeholder="Title" required>

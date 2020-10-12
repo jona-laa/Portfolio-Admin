@@ -74,7 +74,7 @@ const initAboutUpdate = (id, url) => {
 
 // Form HTML
 const aboutFormHtml = () => `
-      <form class="edit-form">
+      <form id="edit-form">
         <div>
           <label for="heading">Heading</label>
           <input type="text" name="heading" id="heading" placeholder="Heading" required>
