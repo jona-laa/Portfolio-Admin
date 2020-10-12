@@ -14,6 +14,7 @@ main a {
   hyphens: auto;
 
   &:hover {
+    cursor: pointer;
     opacity: 0.75;
   }
 

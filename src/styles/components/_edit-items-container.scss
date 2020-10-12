@@ -1,3 +1,11 @@
+#edit-items {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 255, 255, 0.95)
+    ),
+    url('../images/resume-bg.jpg') no-repeat center center/cover;
+}
+
 #edit-items_container {
   @include flex(row, wrap);
   justify-content: center;
@@ -6,7 +14,7 @@
 }
 
 h3 {
-    text-align: center;
+  text-align: center;
 }
 
 .trio {
@@ -29,12 +37,11 @@ h3 {
       margin: 10px auto;
     }
   }
-
 }
 
 .edit-items_controls {
-    margin: auto;
-    padding: 10px 20px 50px;
-    text-align: center;
-    width: 100%;
+  margin: auto;
+  padding: 10px 20px 50px;
+  text-align: center;
+  width: 100%;
 }

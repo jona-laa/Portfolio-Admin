@@ -1,13 +1,13 @@
 /* Header */
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/emile-perron-xrVDYZRGdw4-unsplash.jpg') no-repeat
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/hero-bg.jpg') no-repeat
     center center/cover;
   height: 100vh;
   position: relative;
   color: $color-light;
 
   @include maxWidth(500px) {
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/emile-perron-xrVDYZRGdw4-unsplash.jpg') no-repeat
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/hero-bg.jpg') no-repeat
       60% center/cover;
   }
 
