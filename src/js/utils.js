@@ -50,7 +50,7 @@ const cancelForm = (e) => {
 // Empties form inputs
 const resetForm = () => {
     updateId = null;
-    editForm.reset();
+    // editForm.reset();
 }
 
 
@@ -64,18 +64,21 @@ const confirmIt = (action) => window.confirm(`Sure you want to ${action}?`);
 
 /* Show User Feedback Div
   * @param   {object}      feedback     Uses object.message & object.code
-  * @param   {string}      element      Element ID or class, e.g '.feedback'
+  * @param   {string}      div          Element ID or class, e.g '.feedback'
+  * @param   {string}      spam         Element ID or class, e.g '#feedback-message'
 */
-const userFeedback = (feedback, element) => {
-    feedbackDiv = document.querySelector('.feedback');
-    feedbackMessage = document.querySelector('#feedback-message');
-
-    fadeInElement(element, 500);
-    const status = feedback.code;
+const userFeedback = (feedback, div, span) => {
+    console.log(feedback)
+    feedbackDiv = document.querySelector(div);
+    feedbackMessage = document.querySelector(span);
     feedbackMessage.textContent = feedback.message;
+    console.log(feedbackMessage)
+
+    fadeInElement(feedbackDiv, 500);
+    const status = feedback.code;
     status == 201 | status == 200 ? feedbackDiv.style.backgroundColor = 'green' : feedbackDiv.style.backgroundColor = 'red';
 
-    fadeOutElement(1000, 4000, element);
+    fadeOutElement(1000, 4000, feedbackDiv);
 }
 
 

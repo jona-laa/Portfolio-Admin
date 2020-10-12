@@ -98,13 +98,10 @@ const aboutFormHtml = () => `
           <label for="published">Publish?</label>
           <input type="checkbox" id="published" name="published">
         </div>
-         <div class="feedback">
-            <span id="feedback-message"></span>
-        </div>
         <div class="form_buttons">
-            <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, aboutUrl, aboutFetchObject, createBio)"> 
-
-            <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
+        <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, aboutUrl, aboutFetchObject, createBio)"> 
+        
+        <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
         </div>
-      </form>
+        </form>
   `

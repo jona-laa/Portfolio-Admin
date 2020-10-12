@@ -50,7 +50,7 @@ const addPost = (url, fetchData, createElements) => {
         }
     )
         .then(res => res.json())
-        // .then(feedback => userFeedback(feedback, '.feedback'))
+        .then(json => userFeedback(json, '.feedback', '#feedback-message'))
         .then(data => resetForm())
         .then(data => fetchAndCreate(url, createElements))
         .catch(e => console.error(e))
@@ -65,9 +65,6 @@ const addPost = (url, fetchData, createElements) => {
   * @param   {function}   createElements  Creates post elements, e.g. createPortfolio
 */
 const updatePost = (id, url, fetchData, createElements) => {
-    // Fetch
-    console.log(`PUT req on id ${id} to ${url}`);
-
     fetch(url,
         {
             method: 'PUT',
@@ -81,7 +78,7 @@ const updatePost = (id, url, fetchData, createElements) => {
         }
     )
         .then(res => res.json())
-        // .then(json => userFeedback(json, '#feedback'))
+        .then(json => userFeedback(json, '.feedback', '#feedback-message'))
         .then(data => resetForm())
         .then(data => fetchAndCreate(url, createElements))
         .catch(e => console.error(e))
@@ -107,7 +104,7 @@ const deletePost = (id, url, createElements) => {
         }
     )
         .then(res => res.json())
-        // .then(feedback => userFeedback(feedback, '.feedback'))
+        .then(json => userFeedback(json, '.feedback', '#feedback-message'))
         .then(data => resetForm())
         .then(data => fetchAndCreate(url, createElements))
         .catch(e => console.error(e)) : null;
