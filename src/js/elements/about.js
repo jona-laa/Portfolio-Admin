@@ -1,7 +1,12 @@
 /* ABOUT */
 
 /* POST */
-// Post HTML
+/* Returns About Post HTML
+  * @param   {string}     id              Post ID
+  * @param   {string}     heading         Post Heading
+  * @param   {string}     bio             Post About Content
+  * @param   {boolean}    published       If published or no. (Actually 1 for true or 0 for false)
+*/
 const aboutItemHtml = (id, heading, bio, image, published) =>
   `
   <div class="about-container">
@@ -37,7 +42,9 @@ let
   inputAboutPublished;
 
 
-// Object to send for POST(id) or PUT
+/* Returns Object to send for POST or PUT(with id)
+  * @param   {string}     id              Post ID
+*/
 const aboutFetchObject = (id) =>
   id ? {
     id: id,
@@ -53,7 +60,10 @@ const aboutFetchObject = (id) =>
     };
 
 
-// Get post and auto fill input fields
+/* Get Post and Auto Fill Input Fields
+  * @param   {string}     id              Post ID
+  * @param   {string}     url             API-url
+*/
 const initAboutUpdate = (id, url) => {
   updateId = id;
 

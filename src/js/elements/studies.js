@@ -1,5 +1,12 @@
 /* STUDIES */
-// Post HTML
+/* Returns Studies Post HTML
+  * @param   {string}     id              Post ID
+  * @param   {string}     title           Course Title
+  * @param   {string}     institution     Course Institution
+  * @param   {string}     start           Start Date
+  * @param   {string}     end             End Date
+  * @param   {string}     descr           Course Description
+*/
 const studiesHtml = (id, title, institution, start, end, descr) => `
       <div class="resume-item">
         <h4>${title}</h4>
@@ -24,7 +31,9 @@ let
   inputStudiesDescr;
 
 
-// Object to send for POST(id) or PUT
+/* Returns Object to send for POST or PUT(with id)
+  * @param   {string}     id              Post ID
+*/
 const studiesFetchObject = (id) =>
   id ? {
     id: id,
@@ -42,7 +51,10 @@ const studiesFetchObject = (id) =>
     };
 
 
-// Get post and auto fill input fields
+/* Get Post and Auto Fill Input Fields
+  * @param   {string}     id              Post ID
+  * @param   {string}     url             API-url
+*/
 const initStudiesUpdate = (id, url) => {
   updateId = id;
 

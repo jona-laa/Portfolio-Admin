@@ -1,5 +1,12 @@
 /* WORK */
-// Post
+/* Returns Work Post HTML
+  * @param   {string}     id              Post ID
+  * @param   {string}     company         Work Company Name
+  * @param   {string}     title           Work Title
+  * @param   {string}     start           Start Date
+  * @param   {string}     end             End Date
+  * @param   {string}     descr           Job Description
+*/
 const workHtml = (id, company, title, start, end, descr) => `
       <div class="resume-item">
         <h4>${company}</h4>
@@ -24,7 +31,9 @@ let
   inputWorkDescr;
 
 
-// Object to send for POST(id) or PUT
+/* Returns Object to send for POST or PUT(with id)
+  * @param   {string}     id              Post ID
+*/
 const workFetchObject = (id) =>
   id ? {
     id: id,
@@ -42,7 +51,10 @@ const workFetchObject = (id) =>
     };
 
 
-// Get post and auto fill input fields
+/* Get Post and Auto Fill Input Fields
+  * @param   {string}     id              Post ID
+  * @param   {string}     url             API-url
+*/
 const initWorkUpdate = (id, url) => {
   updateId = id;
 

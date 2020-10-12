@@ -1,5 +1,10 @@
 /* PORTFOLIO */
-// Post
+/* Returns Portfolio Post HTML
+  * @param   {string}     id              Post ID
+  * @param   {string}     title           Project Title
+  * @param   {string}     url             Project URL
+  * @param   {string}     descr           Project Description
+*/
 const portfolioHtml = (id, title, url, descr, image) => `
       <div class="portfolio-item">
         <img src="${image}" alt="" />
@@ -20,7 +25,9 @@ let
   inputPortfolioImage;
 
 
-// Object to send for POST(id) or PUT
+/* Returns Object to send for POST or PUT(with id)
+  * @param   {string}     id              Post ID
+*/
 const portfolioFetchObject = (id) =>
   id ? {
     id: id,
@@ -36,7 +43,10 @@ const portfolioFetchObject = (id) =>
     };
 
 
-// Get post and auto fill input fields
+/* Get Post and Auto Fill Input Fields
+  * @param   {string}     id              Post ID
+  * @param   {string}     url             API-url
+*/
 const initPortfolioUpdate = (id, url) => {
   updateId = id;
 

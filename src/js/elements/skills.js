@@ -1,5 +1,9 @@
 /* SKILLS */
-// Post
+/* Returns Skill Post HTML
+  * @param   {string}     id         Post ID
+  * @param   {string}     skill      Post Skill 
+  * @param   {string}     icon       Skill Font Awesome Icon, e.g 'fab fa-react'
+*/
 const skillsHtml = (id, skill, icon) => `
       <div class="skill">
         <i class="${icon} fa-3x"></i>
@@ -21,7 +25,9 @@ let
   inputSkillsIcon;
 
 
-// Object to send for POST(id) or PUT
+/* Returns Object to send for POST or PUT(with id)
+  * @param   {string}     id              Post ID
+*/
 const skillsFetchObject = (id) =>
   id ? {
     id: id,
@@ -33,7 +39,10 @@ const skillsFetchObject = (id) =>
     };
 
 
-// Get post and auto fill input fields
+/* Get Post and Auto Fill Input Fields
+  * @param   {string}     id              Post ID
+  * @param   {string}     url             API-url
+*/
 const initSkillsUpdate = (id, url) => {
   updateId = id;
 
