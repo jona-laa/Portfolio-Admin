@@ -68,16 +68,13 @@ const confirmIt = (action) => window.confirm(`Sure you want to ${action}?`);
   * @param   {string}      spam         Element ID or class, e.g '#feedback-message'
 */
 const userFeedback = (feedback, div, span) => {
-    console.log(feedback)
     feedbackDiv = document.querySelector(div);
     feedbackMessage = document.querySelector(span);
     feedbackMessage.textContent = feedback.message;
-    console.log(feedbackMessage)
-
-    fadeInElement(feedbackDiv, 500);
     const status = feedback.code;
     status == 201 | status == 200 ? feedbackDiv.style.backgroundColor = 'green' : feedbackDiv.style.backgroundColor = 'red';
 
+    fadeInElement(feedbackDiv, 500);
     fadeOutElement(1000, 4000, feedbackDiv);
 }
 
