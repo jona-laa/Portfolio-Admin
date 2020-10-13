@@ -11,7 +11,7 @@ const studiesHtml = (id, title, institution, start, end, descr) => `
       <div class="resume-item">
         <h4>${title}</h4>
         <span>${institution}</span><br>
-        <span>${start} – ${end}</span>
+        <span>${start} – ${end == '0000-00-00' ? 'Current' : end}</span>
         <p>${descr}</p>
 
         <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, studiesUrl, createStudies)"><i class="fas fa-trash-alt fa-1x"></i></button>
@@ -36,6 +36,7 @@ let
 */
 const studiesFetchObject = (id) =>
   id ? {
+    token: seshToken,
     id: id,
     title: inputStudiesTitle.value,
     institution: inputStudiesInstitution.value,
@@ -43,12 +44,14 @@ const studiesFetchObject = (id) =>
     date_end: inputStudiesEnd.value,
     descr: inputStudiesDescr.value
   } : {
+      token: seshToken,
       title: inputStudiesTitle.value,
       institution: inputStudiesInstitution.value,
       date_start: inputStudiesStart.value,
       date_end: inputStudiesEnd.value,
       descr: inputStudiesDescr.value
     };
+
 
 
 /* Get Post and Auto Fill Input Fields

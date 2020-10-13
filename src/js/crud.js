@@ -29,7 +29,7 @@ const updateOrAdd = (e, id, url, fetchData, createElements) => {
 
 
 
-/********** GET **********/
+/********** POST **********/
 
 /* Sends POST req, with data object to chosen endpoint
   * @param   {string}     url             API-url
@@ -57,6 +57,8 @@ const addPost = (url, fetchData, createElements) => {
 }
 
 
+
+/********** PUT **********/
 
 /* Sends PUT req, with data object to chosen endpoint
   * @param   {number}     id              ID of post to update(updateId)
@@ -94,13 +96,19 @@ const updatePost = (id, url, fetchData, createElements) => {
   * @param   {function}   createElements  Creates post elements, e.g. createPortfolio
 */
 const deletePost = (id, url, createElements) => {
-    confirmIt('delete post') ? fetch(`${url}?id=${id}`,
+    confirmIt('delete post') ? fetch(url,
         {
             method: 'DELETE',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             },
+            body: JSON.stringify(
+                {
+                    token: seshToken,
+                    id: id
+                }
+            ),
         }
     )
         .then(res => res.json())

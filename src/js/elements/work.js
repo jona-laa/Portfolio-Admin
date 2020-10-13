@@ -11,7 +11,7 @@ const workHtml = (id, company, title, start, end, descr) => `
       <div class="resume-item">
         <h4>${company}</h4>
         <span>${title}</span><br>
-        <span>${start} – ${end}</span>
+        <span>${start} – ${end == '0000-00-00' ? 'Current' : end}</span>
         <p>${descr}</p>
 
         <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, workUrl, createWork)"><i class="fas fa-trash-alt fa-1x"></i></button>
@@ -36,6 +36,7 @@ let
 */
 const workFetchObject = (id) =>
   id ? {
+    token: seshToken,
     id: id,
     company: inputWorkCompany.value,
     title: inputWorkTitle.value,
@@ -43,6 +44,7 @@ const workFetchObject = (id) =>
     date_end: inputWorkEnd.value,
     descr: inputWorkDescr.value
   } : {
+      token: seshToken,
       company: inputWorkCompany.value,
       title: inputWorkTitle.value,
       date_start: inputWorkStart.value,

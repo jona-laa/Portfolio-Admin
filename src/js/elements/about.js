@@ -26,7 +26,7 @@ const aboutItemHtml = (id, heading, bio, image, published) =>
   </div>
 
   <div class="edit-items_controls">
-  <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, aboutUrl, createAbout)"><i class="fas fa-trash-alt fa-1x"></i></button>
+  <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, aboutUrl, createBio)"><i class="fas fa-trash-alt fa-1x"></i></button>
   <button class="btn update" id="update-${id}" value="update" onclick="initAboutUpdate(${id}, aboutUrl)"><i class="fas fa-edit fa-1x"></i></button>
   </div>
 `;
@@ -47,16 +47,18 @@ let
 */
 const aboutFetchObject = (id) =>
   id ? {
+    token: seshToken,
     id: id,
     heading: inputAboutHeading.value,
     img_src: inputAboutImage.value,
     bio: inputAboutBio.value,
-    published: inputAboutPublished.checked ? true : false
+    published: inputAboutPublished.checked ? 1 : 0
   } : {
+      token: seshToken,
       heading: inputAboutHeading.value,
       img_src: inputAboutImage.value,
       bio: inputAboutBio.value,
-      published: inputAboutPublished.checked ? true : false
+      published: inputAboutPublished.checked ? 1 : 0
     };
 
 

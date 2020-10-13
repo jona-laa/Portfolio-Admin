@@ -18,17 +18,25 @@ let
 let
     editForm;
 
-// API URLs
+// API URLs Local
 const aboutUrl = 'http://localhost:8080/portfolio/api/bio';
 const skillsUrl = 'http://localhost:8080/portfolio/api/skills';
 const workUrl = 'http://localhost:8080/portfolio/api/jobs';
 const studiesUrl = 'http://localhost:8080/portfolio/api/courses';
 const portfolioUrl = 'http://localhost:8080/portfolio/api/projects';
 
+// API URLs Remote
+// const aboutUrl = 'http://studenter.miun.se/~jola1803/dt173g/portfolio/api/bio.php';
+// const skillsUrl = 'http://studenter.miun.se/~jola1803/dt173g/portfolio/api/skills.php';
+// const workUrl = 'http://studenter.miun.se/~jola1803/dt173g/portfolio/api/jobs.php';
+// const studiesUrl = 'http://studenter.miun.se/~jola1803/dt173g/portfolio/api/courses.php';
+// const portfolioUrl = 'http://studenter.miun.se/~jola1803/dt173g/portfolio/api/projects.php';
+
 // Holds ID of course to update
 let updateId;
 
-
+// Dev Session Token
+let seshToken = 'dev'
 
 // Resets DOM element with cetegory items
 const resetDOM = () => {
@@ -50,7 +58,7 @@ const cancelForm = (e) => {
 // Empties form inputs
 const resetForm = () => {
     updateId = null;
-    // editForm.reset();
+    editForm.reset();
 }
 
 

@@ -30,10 +30,12 @@ let
 */
 const skillsFetchObject = (id) =>
   id ? {
+    token: seshToken,
     id: id,
     skill: inputSkillsSkill.value,
     icon: inputSkillsIcon.value,
   } : {
+      token: seshToken,
       skill: inputSkillsSkill.value,
       icon: inputSkillsIcon.value,
     };

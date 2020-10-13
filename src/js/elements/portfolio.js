@@ -36,12 +36,14 @@ let
 */
 const portfolioFetchObject = (id) =>
   id ? {
+    token: seshToken,
     id: id,
     title: inputPortfolioTitle.value,
     prj_url: inputPortfoliUrl.value,
     descr: inputPortfolioDescr.value,
     img_src: inputPortfolioImage.value
   } : {
+      token: seshToken,
       title: inputPortfolioTitle.value,
       prj_url: inputPortfoliUrl.value,
       descr: inputPortfolioDescr.value,
