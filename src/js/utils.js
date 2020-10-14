@@ -80,7 +80,7 @@ const userFeedback = (feedback, div, span) => {
     feedbackMessage = document.querySelector(span);
     feedbackMessage.textContent = feedback.message;
     const status = feedback.code;
-    status == 201 | status == 200 ? feedbackDiv.style.backgroundColor = 'green' : feedbackDiv.style.backgroundColor = 'red';
+    status == 201 | status == 200 ? feedbackDiv.style.backgroundColor = '#0d4b0d' : feedbackDiv.style.backgroundColor = '#941212';
 
     fadeInElement(feedbackDiv, 500);
     fadeOutElement(1000, 4000, feedbackDiv);

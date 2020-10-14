@@ -7,20 +7,20 @@
   margin: auto;
   max-width: 960px;
   padding: 0 20px;
-}
 
-.avatar-container {
-  margin: $padding-div;
-}
+  .avatar-container {
+    margin: $padding-div;
 
-.avatar {
-  border-radius: 50%;
-  filter: brightness(90%);
-  height: 260px;
-  width: 260px;
+    .avatar {
+      border-radius: 50%;
+      filter: brightness(90%);
+      height: 260px;
+      width: 260px;
 
-  @include maxWidth(800px) {
-    max-width: 230px;
-    max-height: 230px;
+      @include maxWidth(800px) {
+        max-width: 230px;
+        max-height: 230px;
+      }
+    }
   }
 }

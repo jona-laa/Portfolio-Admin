@@ -1,7 +1,5 @@
 /********** GET **********/
 
-// const { create } = require('browser-sync');
-
 /* Gets data and creates appropriate element
   * @param        {string}        url                 API-url
   * @param        {function}      createElement       createBio/Skills/Work/Studies/Portfolio
