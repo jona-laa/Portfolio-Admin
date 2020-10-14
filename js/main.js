@@ -7,6 +7,9 @@
 const fetchAndCreate = (url, createElement) => {
   fetch(url).then(res => res.json()).then(data => createElement(data)).catch(e => console.error(e));
 };
+
+
+
 /* "Routes" functionality of Send button
   * @param   {object}     e               Event object
   * @param   {number}     id              ID of post to update(updateId)
@@ -14,12 +17,13 @@ const fetchAndCreate = (url, createElement) => {
   * @param   {object}     fetchData       Data object to be sent to API endpoint
   * @param   {function}   createElements  Creates post elements, e.g. createPortfolio
 */
-
-
 const updateOrAdd = (e, id, url, fetchData, createElements) => {
   e.preventDefault();
   id ? updatePost(id, url, fetchData, createElements) : addPost(url, fetchData, createElements);
 };
+
+
+
 /********** POST **********/
 
 /* Sends POST req, with data object to chosen endpoint
@@ -27,8 +31,6 @@ const updateOrAdd = (e, id, url, fetchData, createElements) => {
   * @param   {object}     fetchData       Data object to be sent to API endpoint
   * @param   {function}   createElements  Creates post elements, e.g. createPortfolio
 */
-
-
 const addPost = (url, fetchData, createElements) => {
   fetch(url, {
     method: 'POST',
@@ -39,6 +41,9 @@ const addPost = (url, fetchData, createElements) => {
     body: JSON.stringify(fetchData())
   }).then(res => res.json()).then(json => userFeedback(json, '.feedback', '#feedback-message')).then(data => resetForm()).then(data => fetchAndCreate(url, createElements)).catch(e => console.error(e));
 };
+
+
+
 /********** PUT **********/
 
 /* Sends PUT req, with data object to chosen endpoint
@@ -47,8 +52,6 @@ const addPost = (url, fetchData, createElements) => {
   * @param   {object}     fetchData       Data object to be sent to API endpoint
   * @param   {function}   createElements  Creates post elements, e.g. createPortfolio
 */
-
-
 const updatePost = (id, url, fetchData, createElements) => {
   fetch(url, {
     method: 'PUT',
@@ -59,6 +62,9 @@ const updatePost = (id, url, fetchData, createElements) => {
     body: JSON.stringify(fetchData(id))
   }).then(res => res.json()).then(json => userFeedback(json, '.feedback', '#feedback-message')).then(data => resetForm()).then(data => fetchAndCreate(url, createElements)).catch(e => console.error(e));
 };
+
+
+
 /********** DELETE **********/
 
 /* Sends DELETE req to chosen endpoint, and reloads DOM with new data
@@ -66,8 +72,6 @@ const updatePost = (id, url, fetchData, createElements) => {
   * @param   {string}     url             API-url
   * @param   {function}   createElements  Creates post elements, e.g. createPortfolio
 */
-
-
 const deletePost = (id, url, createElements) => {
   confirmIt('delete post') ? fetch(url, {
     method: 'DELETE',
@@ -81,57 +85,71 @@ const deletePost = (id, url, createElements) => {
     })
   }).then(res => res.json()).then(json => userFeedback(json, '.feedback', '#feedback-message')).then(data => resetForm()).then(data => fetchAndCreate(url, createElements)).catch(e => console.error(e)) : null;
 };
+
+
+
 // Hide header & to top on scroll
 window.onscroll = () => {
   hideMenu();
   hideToTopBtn();
 };
+
+
+
 /* Toggle element from top or bottom
  * @param   {DOM element}   element     Target DOM element to toggle
  * @param   {string}        position    'top' or 'bottom'
  * @param   {string}        offset      Offset in e.g. pixels, rem, em, etc.
 */
-
-
 const elementToggle = (element, position, offset) => position === 'top' ? element.style.top = offset : element.style.bottom = offset;
+
+
+
 /* Change display attribute of element
  * @param   {DOM element}   element     Target DOM element
  * @param   {string}        value       Display attribute value, e.g. 'none', 'block', etc.
 */
+const elementDisplay = (element, value) => element.style.display = value; 
 
 
-const elementDisplay = (element, value) => element.style.display = value; // Hide Header
 
-
+// Hide Header
 let prevScrollpos = window.pageYOffset;
-
 const hideMenu = () => {
-  let currentScrollPos = window.pageYOffset; // if (screen.width < 813 && window.pageYOffset > 100) {
-
+  let currentScrollPos = window.pageYOffset; 
+  
+  if (window.pageYOffset > 100) {
   if (prevScrollpos > currentScrollPos) {
     elementToggle(header, 'top', '0');
     elementDisplay(mainMenu, 'none');
   } else {
     elementToggle(header, 'top', '-80px');
     elementDisplay(mainMenu, 'none');
-  } // }
+  } 
+  }
+  
   // Give header tint if scroll down screen height
-
-
   window.pageYOffset > window.screen.height - 300 ? header.style.background = 'rgba(0, 0, 0, 0.5)' : header.style.background = 'transparent';
   prevScrollpos = currentScrollPos;
-}; // Hide "to top button"
+}; 
 
 
+
+// Hide "to top button"
 const hideToTopBtn = () => {
   window.pageYOffset > window.screen.height ? elementToggle(toTopBtn, 'bottom', '20px') : elementToggle(toTopBtn, 'bottom', '-50px');
-}; // Toggle mobile menu
+}; 
 
 
+
+// Toggle mobile menu
 $('#main-menu-toggle').click(function () {
   $('.main-menu ul').slideToggle(300, function () {});
-}); //Smooth scrolling
+}); 
 
+
+
+//Smooth scrolling
 $('#menu-main-menu a, .btn, .arrow-link').on('click', function (e) {
   if (this.hash !== '') {
     e.preventDefault();
@@ -141,66 +159,81 @@ $('#menu-main-menu a, .btn, .arrow-link').on('click', function (e) {
     }, 800);
   }
 });
+
+
+
 // DOM elements
 const header = document.querySelector('.header-content'),
       toTopBtn = document.querySelector('#goTop'),
-      mainMenu = document.querySelector('#menu-main-menu'); // Output Elements
-
+      mainMenu = document.querySelector('#menu-main-menu'); 
+      
+// Output Elements
 const editItemsContainer = document.querySelector('#edit-items_container'),
-      editSection = document.querySelector('#edit'); // User Feedback Elements
+      editSection = document.querySelector('#edit'); 
+      
+// User Feedback Elements
+let feedbackDiv, feedbackMessage; 
 
-let feedbackDiv, feedbackMessage; // Edit Form Element
+// Edit Form Element
+let editForm; 
 
-let editForm; // API URLs Local
-
+// API URLs Local
 const aboutUrl = 'http://localhost:8080/portfolio/api/bio';
 const skillsUrl = 'http://localhost:8080/portfolio/api/skills';
 const workUrl = 'http://localhost:8080/portfolio/api/jobs';
 const studiesUrl = 'http://localhost:8080/portfolio/api/courses';
-const portfolioUrl = 'http://localhost:8080/portfolio/api/projects'; // API URLs Remote
+const portfolioUrl = 'http://localhost:8080/portfolio/api/projects'; 
+
+// API URLs Remote
 // const aboutUrl = 'http://studenter.miun.se/~jola1803/dt173g/portfolio/api/bio.php';
 // const skillsUrl = 'http://studenter.miun.se/~jola1803/dt173g/portfolio/api/skills.php';
 // const workUrl = 'http://studenter.miun.se/~jola1803/dt173g/portfolio/api/jobs.php';
 // const studiesUrl = 'http://studenter.miun.se/~jola1803/dt173g/portfolio/api/courses.php';
 // const portfolioUrl = 'http://studenter.miun.se/~jola1803/dt173g/portfolio/api/projects.php';
+
 // Holds ID of course to update
+let updateId; 
 
-let updateId; // Dev Session Token
-// let seshToken = 'dev'
+
+
 // Resets DOM element with cetegory items
-
 const resetDOM = () => {
   updateId = null;
   editItemsContainer.innerHTML = '';
 };
+
+
+
 /* Cancels Form and resets inputs on confitm
 * @param    {string}     e      Event object
 */
-
-
 const cancelForm = e => {
   e.preventDefault();
   confirmIt('cancel') ? resetForm() : null;
-}; // Empties form inputs
+}; 
 
 
+
+// Empties form inputs
 const resetForm = () => {
   updateId = null;
   editForm.reset();
 };
+
+
+
 /* Confirm Pop-Up
   * @param      {string}        action      E.g 'cencel' -> 'Sure you want to cencel?'
 */
-
-
 const confirmIt = action => window.confirm(`Sure you want to ${action}?`);
+
+
+
 /* Show User Feedback Div
   * @param   {object}      feedback     Uses object.message & object.code
   * @param   {string}      div          Element ID or class, e.g '.feedback'
   * @param   {string}      spam         Element ID or class, e.g '#feedback-message'
 */
-
-
 const userFeedback = (feedback, div, span) => {
   feedbackDiv = document.querySelector(div);
   feedbackMessage = document.querySelector(span);
@@ -210,22 +243,24 @@ const userFeedback = (feedback, div, span) => {
   fadeInElement(feedbackDiv, 500);
   fadeOutElement(1000, 4000, feedbackDiv);
 };
+
+
+
 /* Fade in Element
   * @param   {string}        element     Element ID or class, e.g '.feedback'
   * @param   {number}        fadeMs      Fade speed in milliseconds
 */
-
-
 const fadeInElement = (element, fadeMs) => {
   $(element).fadeIn(fadeMs, function () {});
 };
+
+
+
 /* Fade out Element
   * @param   {number}           fadeMs      Fade speed in milliseconds
   * @param   {number}           timeoutMS   Timeout in milliseconds
   * @param   {Array<string>}    elements    Element ID/Class, e.g '.feedback'
 */
-
-
 const fadeOutElement = (fadeMs, timeoutMs, ...elements) => {
   elements.forEach(e => {
     setTimeout(() => {
@@ -233,6 +268,9 @@ const fadeOutElement = (fadeMs, timeoutMs, ...elements) => {
     }, timeoutMs);
   });
 };
+
+
+
 /* ABOUT */
 
 /* POST */
@@ -265,15 +303,18 @@ const aboutItemHtml = (id, heading, bio, image, published) => `
   <button class="btn update" id="update-${id}" value="update" onclick="initAboutUpdate(${id}, aboutUrl)"><i class="fas fa-edit fa-1x"></i></button>
   </div>
 `;
+
+
+
 /* FORM */
 // Input Elements
-
-
 let inputAboutHeading, inputAboutImage, inputAboutBio, inputAboutPublished;
+
+
+
 /* Returns Object to send for POST or PUT(with id)
   * @param   {string}     id              Post ID
 */
-
 const aboutFetchObject = id => id ? {
   token: seshToken,
   id: id,
@@ -288,12 +329,13 @@ const aboutFetchObject = id => id ? {
   bio: inputAboutBio.value,
   published: inputAboutPublished.checked ? 1 : 0
 };
+
+
+
 /* Get Post and Auto Fill Input Fields
   * @param   {string}     id              Post ID
   * @param   {string}     url             API-url
 */
-
-
 const initAboutUpdate = (id, url) => {
   updateId = id;
   fetch(`${url}?id=${id}`).then(res => res.json()).then(data => {
@@ -310,9 +352,11 @@ const initAboutUpdate = (id, url) => {
     inputAboutPublished.checked = published == 1 ? true : false;
     window.scrollTo(0, document.body.scrollHeight);
   });
-}; // Form HTML
+}; 
 
 
+
+// Form HTML
 const aboutFormHtml = () => `
       <form id="edit-form">
         <div>
@@ -335,7 +379,10 @@ const aboutFormHtml = () => `
         </div>
         </form>
   `;
-/* Creates About Section
+
+
+
+  /* Creates About Section
   * @param        {object}        fetchData       fetchData.bios[0].id/heading/bio/img_src
 */
 const createBio = fetchData => {
@@ -344,50 +391,53 @@ const createBio = fetchData => {
   const bios = fetchData.bios;
   bios.forEach(bio => {
     editItemsContainer.innerHTML += aboutItemHtml(bio.id, bio.heading, bio.bio, bio.img_src, bio.published);
-  }); // Create Form
-
-  editSection.innerHTML = aboutFormHtml(); // Initiate Input Variables
-
+  }); 
+  
+  // Create Form
+  editSection.innerHTML = aboutFormHtml(); 
+  // Initiate Input Variables
   inputAboutHeading = document.querySelector('#heading');
   inputAboutImage = document.querySelector('#image');
   inputAboutBio = document.querySelector('#bio');
   inputAboutPublished = document.querySelector('#published');
   editForm = document.querySelector('#edit-form');
 };
+
+
+
 /* Creates Skills Section
   * @param        {object}        fetchData       fetchData.skills
 */
-
-
 const createSkills = fetchData => {
   resetDOM();
   editItemsContainer.classList.remove('trio');
   const skills = fetchData.skills;
   skills.forEach(skill => {
     editItemsContainer.innerHTML += skillsHtml(skill.id, skill.skill, skill.icon);
-  }); // Create Form
-
-  editSection.innerHTML = skillsFormHtml(); // Initiate Input Variables
-
+  }); 
+  // Create Form
+  editSection.innerHTML = skillsFormHtml(); 
+  // Initiate Input Variables
   inputSkillsSkill = document.querySelector('#skill');
   inputSkillsIcon = document.querySelector('#icon');
   editForm = document.querySelector('#edit-form');
 };
+
+
+
 /* Creates Work Section
   * @param        {object}        fetchData       fetchData.jobs
 */
-
-
 const createWork = fetchData => {
   resetDOM();
   const jobs = fetchData.jobs;
   editItemsContainer.classList.add('trio');
   jobs.forEach(job => {
     editItemsContainer.innerHTML += workHtml(job.id, job.company, job.title, job.date_start, job.date_end, job.descr);
-  }); // Create Form
-
-  editSection.innerHTML = workFormHtml(); // Initiate Input Variables
-
+  }); 
+  // Create Form
+  editSection.innerHTML = workFormHtml(); 
+  // Initiate Input Variables
   inputWorkCompany = document.querySelector('#company');
   inputWorkTitle = document.querySelector('#title');
   inputWorkStart = document.querySelector('#start-date');
@@ -395,21 +445,22 @@ const createWork = fetchData => {
   inputWorkDescr = document.querySelector('#descr');
   editForm = document.querySelector('#edit-form');
 };
+
+
+
 /* Creates Studies Section
   * @param        {object}        fetchData       fetchData.courses
 */
-
-
 const createStudies = fetchData => {
   resetDOM();
   const courses = fetchData.courses;
   editItemsContainer.classList.add('trio');
   courses.forEach(course => {
     editItemsContainer.innerHTML += studiesHtml(course.id, course.title, course.institution, course.date_start, course.date_end, course.descr);
-  }); // Create Form
-
-  editSection.innerHTML = studiesFormHtml(); // Initiate Input Variables
-
+  }); 
+  // Create Form
+  editSection.innerHTML = studiesFormHtml(); 
+  // Initiate Input Variables
   inputStudiesTitle = document.querySelector('#title');
   inputStudiesInstitution = document.querySelector('#institution');
   inputStudiesStart = document.querySelector('#start-date');
@@ -417,27 +468,31 @@ const createStudies = fetchData => {
   inputStudiesDescr = document.querySelector('#descr');
   editForm = document.querySelector('#edit-form');
 };
+
+
+
 /* Creates Portfolio Section
   * @param        {object}        fetchData       fetchData.projects
 */
-
-
 const createPortfolio = fetchData => {
   resetDOM();
   const projects = fetchData.projects;
   editItemsContainer.classList.add('trio');
   projects.forEach(project => {
     editItemsContainer.innerHTML += portfolioHtml(project.id, project.title, project.prj_url, project.descr, project.img_src);
-  }); // Create Form
-
-  editSection.innerHTML = portfolioFormHtml(); // Initiate Input Variables
-
+  }); 
+  // Create Form
+  editSection.innerHTML = portfolioFormHtml(); 
+  // Initiate Input Variables
   inputPortfolioTitle = document.querySelector('#title');
   inputPortfoliUrl = document.querySelector('#url');
   inputPortfolioDescr = document.querySelector('#descr');
   inputPortfolioImage = document.querySelector('#image');
   editForm = document.querySelector('#edit-form');
 };
+
+
+
 /* PORTFOLIO */
 
 /* Returns Portfolio Post HTML
@@ -460,15 +515,17 @@ const portfolioHtml = (id, title, url, descr, image) => `
         </div>
       </div>
     `;
-/* FORM */
+
+
+    /* FORM */
 // Input Elements
-
-
 let inputPortfolioTitle, inputPortfoliUrl, inputPortfolioDescr, inputPortfolioImage;
+
+
+
 /* Returns Object to send for POST or PUT(with id)
   * @param   {string}     id              Post ID
 */
-
 const portfolioFetchObject = id => id ? {
   token: seshToken,
   id: id,
@@ -483,12 +540,13 @@ const portfolioFetchObject = id => id ? {
   descr: inputPortfolioDescr.value,
   img_src: inputPortfolioImage.value
 };
+
+
+
 /* Get Post and Auto Fill Input Fields
   * @param   {string}     id              Post ID
   * @param   {string}     url             API-url
 */
-
-
 const initPortfolioUpdate = (id, url) => {
   updateId = id;
   fetch(`${url}?id=${id}`).then(res => res.json()).then(data => {
@@ -505,9 +563,11 @@ const initPortfolioUpdate = (id, url) => {
     inputPortfolioImage.value = img_src;
     window.scrollTo(0, document.body.scrollHeight);
   });
-}; // Form HTML
+}; 
 
 
+
+// Form HTML
 const portfolioFormHtml = () => `
       <form id="edit-form">
         <div>
@@ -532,6 +592,9 @@ const portfolioFormHtml = () => `
         </div>
       </form>
   `;
+
+
+
 /* SKILLS */
 
 /* Returns Skill Post HTML
@@ -549,15 +612,18 @@ const skillsHtml = (id, skill, icon) => `
       </div>
       
     `;
+
+
+
 /* FORM */
 // Input Elements
-
-
 let inputSkillsSkill, inputSkillsIcon;
+
+
+
 /* Returns Object to send for POST or PUT(with id)
   * @param   {string}     id              Post ID
 */
-
 const skillsFetchObject = id => id ? {
   token: seshToken,
   id: id,
@@ -568,12 +634,13 @@ const skillsFetchObject = id => id ? {
   skill: inputSkillsSkill.value,
   icon: inputSkillsIcon.value
 };
+
+
+
 /* Get Post and Auto Fill Input Fields
   * @param   {string}     id              Post ID
   * @param   {string}     url             API-url
 */
-
-
 const initSkillsUpdate = (id, url) => {
   updateId = id;
   fetch(`${url}?id=${id}`).then(res => res.json()).then(data => {
@@ -585,9 +652,11 @@ const initSkillsUpdate = (id, url) => {
     inputSkillsIcon.value = icon;
     window.scrollTo(0, document.body.scrollHeight);
   });
-}; // Form HTML
+}; 
 
 
+
+// Form HTML
 const skillsFormHtml = () => `
       <form id="edit-form">
         <div>
@@ -605,7 +674,10 @@ const skillsFormHtml = () => `
         </div>
         </form>
   `;
-/* STUDIES */
+
+
+
+  /* STUDIES */
 
 /* Returns Studies Post HTML
   * @param   {string}     id              Post ID
@@ -626,15 +698,18 @@ const studiesHtml = (id, title, institution, start, end, descr) => `
         <button class="btn update" id="update-${id}" value="update" onclick="initStudiesUpdate(${id}, studiesUrl)"><i class="fas fa-edit fa-1x"></i></button>
       </div>
     `;
+
+
+
 /* FORM */
 // Input Elements
-
-
 let inputStudiesTitle, inputStudiesInstitution, inputStudiesStart, inputStudiesEnd, inputStudiesDescr;
+
+
+
 /* Returns Object to send for POST or PUT(with id)
   * @param   {string}     id              Post ID
 */
-
 const studiesFetchObject = id => id ? {
   token: seshToken,
   id: id,
@@ -651,12 +726,13 @@ const studiesFetchObject = id => id ? {
   date_end: inputStudiesEnd.value,
   descr: inputStudiesDescr.value
 };
+
+
+
 /* Get Post and Auto Fill Input Fields
   * @param   {string}     id              Post ID
   * @param   {string}     url             API-url
 */
-
-
 const initStudiesUpdate = (id, url) => {
   updateId = id;
   fetch(`${url}?id=${id}`).then(res => res.json()).then(data => {
@@ -675,9 +751,11 @@ const initStudiesUpdate = (id, url) => {
     inputStudiesDescr.value = descr;
     window.scrollTo(0, document.body.scrollHeight);
   });
-}; // Form HTML
+}; 
 
 
+
+// Form HTML
 const studiesFormHtml = () => `
       <form id="edit-form">
         <div>
@@ -706,6 +784,9 @@ const studiesFormHtml = () => `
         </div>
       </form>
   `;
+
+
+
 /* WORK */
 
 /* Returns Work Post HTML
@@ -727,15 +808,18 @@ const workHtml = (id, company, title, start, end, descr) => `
         <button class="btn update" id="update-${id}" value="update" onclick="initWorkUpdate(${id}, workUrl)"><i class="fas fa-edit fa-1x"></i></button>
       </div>
     `;
+
+
+
 /* FORM */
 // Input Elements
-
-
 let inputWorkCompany, inputWorkTitle, inputWorkStart, inputWorkEnd, inputWorkDescr;
+
+
+
 /* Returns Object to send for POST or PUT(with id)
   * @param   {string}     id              Post ID
 */
-
 const workFetchObject = id => id ? {
   token: seshToken,
   id: id,
@@ -752,12 +836,13 @@ const workFetchObject = id => id ? {
   date_end: inputWorkEnd.value,
   descr: inputWorkDescr.value
 };
+
+
+
 /* Get Post and Auto Fill Input Fields
   * @param   {string}     id              Post ID
   * @param   {string}     url             API-url
 */
-
-
 const initWorkUpdate = (id, url) => {
   updateId = id;
   fetch(`${url}?id=${id}`).then(res => res.json()).then(data => {
@@ -776,9 +861,11 @@ const initWorkUpdate = (id, url) => {
     inputWorkDescr.value = descr;
     window.scrollTo(0, document.body.scrollHeight);
   });
-}; // Form
+}; 
 
 
+
+// Form
 const workFormHtml = () => `
       <form id="edit-form">
         <div>
