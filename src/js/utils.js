@@ -36,7 +36,7 @@ const portfolioUrl = 'http://localhost:8080/portfolio/api/projects';
 let updateId;
 
 // Dev Session Token
-let seshToken = 'dev'
+// let seshToken = 'dev'
 
 // Resets DOM element with cetegory items
 const resetDOM = () => {
@@ -80,7 +80,7 @@ const userFeedback = (feedback, div, span) => {
     feedbackMessage = document.querySelector(span);
     feedbackMessage.textContent = feedback.message;
     const status = feedback.code;
-    status == 201 | status == 200 ? feedbackDiv.style.backgroundColor = '#0d4b0d' : feedbackDiv.style.backgroundColor = '#941212';
+    status == 201 | status == 200 ? feedbackDiv.style.backgroundColor = '#1b8832' : feedbackDiv.style.backgroundColor = '#b31b1b';
 
     fadeInElement(feedbackDiv, 500);
     fadeOutElement(1000, 4000, feedbackDiv);

@@ -1,6 +1,5 @@
 /* Buttons */
 .btn {
-  // border-radius: 5px;
   cursor: pointer;
   display: inline-block;
   font-size: $font-M;
@@ -45,4 +44,16 @@
   padding: 10px 20px 50px;
   text-align: center;
   width: 100%!important;
+}
+
+#logout-btn {
+  position: absolute;
+  top: 26px;
+  right: 10px;
+
+  @include maxWidth(812px) {
+    display: block;
+    margin-top: 20px;
+    position: initial; 
+  }
 }
