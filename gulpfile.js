@@ -46,7 +46,9 @@ const cleanDist = async () => {
 // HTML Task - minify
 const html = async () => {
   await src(path.html)
-    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(htmlmin({
+      collapseWhitespace: true
+    }))
     .pipe(dest(path.dist))
 }
 
