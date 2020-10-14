@@ -8,6 +8,7 @@ This project was initially developed in HTML, SASS, JavaScript with a little hel
 * SASS
 * JavaScript(ES6)
 * Gulp
+* PHP
 
 ### Functionality
 * Simple log in/out
