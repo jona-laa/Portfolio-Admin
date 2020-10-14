@@ -1,5 +1,5 @@
 ## Admin / CMS for Portfolio
-Admin/CMS for my [Portfolio](https://github.com/jona-laa/Portfolio-Client) page.
+Admin/CMS for my [Portfolio](http://studenter.miun.se/~jola1803/dt173g/portfolio/client/) page.
 
 This project was initially developed in HTML, SASS, JavaScript with a little help from Gulp to speed up the process. PHP additions were so minor, this made the most sense. 
 
