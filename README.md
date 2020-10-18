@@ -23,4 +23,4 @@ The design is really just a clone of the [Portfolio-Client](https://github.com/j
 * move folder to AMP-stack development environment. 
 * Usually found at http://localhost:8080/portfolio_admin/
 * A config.php file has to be created with credentials, token, and a domain variable.
-* A database is needed, as well as a REST API. This project is made to function with [this](https://github.com/jona-laa/Portfolio-Server) REST API.
+* A database is needed, as well as a REST API. This project is made to function with [this REST API](https://github.com/jona-laa/Portfolio-Server).
