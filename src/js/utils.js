@@ -36,7 +36,7 @@ const portfolioUrl = 'http://localhost:8080/portfolio/api/projects';
 let updateId;
 
 // Dev Session Token
-// let seshToken = 'dev'
+let seshToken = 'dev'
 
 // Resets DOM element with cetegory items
 const resetDOM = () => {

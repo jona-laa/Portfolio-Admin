@@ -69,18 +69,27 @@ const aboutFetchObject = (id) =>
 const initAboutUpdate = (id, url) => {
   updateId = id;
 
-  fetch(`${url}?id=${id}`)
-    .then(res => res.json())
-    .then(data => {
-      const { id, heading, bio, img_src, published } = data.bios[0];
+  const objIndex = JSON.parse(localStorage.about).findIndex(obj => obj.id == id);
 
-      inputAboutHeading.value = heading;
-      inputAboutBio.value = bio;
-      inputAboutImage.value = img_src;
-      inputAboutPublished.checked = published == 1 ? true : false;
+  const { heading, bio, img_src, published } = JSON.parse(localStorage.about)[objIndex];
 
-      window.scrollTo(0, document.body.scrollHeight);
-    })
+  inputAboutHeading.value = heading;
+  inputAboutBio.value = bio;
+  inputAboutImage.value = img_src;
+  inputAboutPublished.checked = published == 1 ? true : false;
+
+  // fetch(`${url}?id=${id}`)
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     const { id, heading, bio, img_src, published } = data.bios[0];
+
+  //     inputAboutHeading.value = heading;
+  //     inputAboutBio.value = bio;
+  //     inputAboutImage.value = img_src;
+  //     inputAboutPublished.checked = published == 1 ? true : false;
+
+  //     window.scrollTo(0, document.body.scrollHeight);
+  //   })
 }
 
 

@@ -8,6 +8,8 @@ const createBio = (fetchData) => {
 
   const bios = fetchData.bios;
 
+  localStorage.about = JSON.stringify(bios);
+
   bios.forEach(bio => {
     editItemsContainer.innerHTML += aboutItemHtml(bio.id, bio.heading, bio.bio, bio.img_src, bio.published);
   });
