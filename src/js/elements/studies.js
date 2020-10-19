@@ -15,7 +15,7 @@ const studiesHtml = (id, title, institution, start, end, descr) => `
         <p>${descr}</p>
 
         <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, studiesUrl, createStudies)"><i class="fas fa-trash-alt fa-1x"></i></button>
-        <button class="btn update" id="update-${id}" value="update" onclick="initStudiesUpdate(${id}, studiesUrl)"><i class="fas fa-edit fa-1x"></i></button>
+        <button class="btn update" id="update-${id}" value="update" onclick="initStudiesUpdate(${id})"><i class="fas fa-edit fa-1x"></i></button>
       </div>
     `;
 
@@ -58,22 +58,20 @@ const studiesFetchObject = (id) =>
   * @param   {string}     id              Post ID
   * @param   {string}     url             API-url
 */
-const initStudiesUpdate = (id, url) => {
+const initStudiesUpdate = (id) => {
   updateId = id;
 
-  fetch(`${url}?id=${id}`)
-    .then(res => res.json())
-    .then(data => {
-      const { id, title, institution, date_start, date_end, descr } = data.courses[0];
+  const objIndex = JSON.parse(localStorage.courses).findIndex(obj => obj.id == id);
 
-      inputStudiesTitle.value = title;
-      inputStudiesInstitution.value = institution;
-      inputStudiesStart.value = date_start;
-      inputStudiesEnd.value = date_end;
-      inputStudiesDescr.value = descr;
+  const { title, institution, date_start, date_end, descr } = JSON.parse(localStorage.courses)[objIndex];
 
-      window.scrollTo(0, document.body.scrollHeight);
-    })
+  inputStudiesTitle.value = title;
+  inputStudiesInstitution.value = institution;
+  inputStudiesStart.value = date_start;
+  inputStudiesEnd.value = date_end;
+  inputStudiesDescr.value = descr;
+
+  window.scrollTo(0, document.body.scrollHeight);
 }
 
 

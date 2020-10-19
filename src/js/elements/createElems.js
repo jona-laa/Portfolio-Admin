@@ -8,7 +8,7 @@ const createBio = (fetchData) => {
 
   const bios = fetchData.bios;
 
-  // Save to localStorage -> avoid unnecessary fetches when initiating update
+  // Save to localStorage -> avoid fetches when initiating update
   localStorage.about = JSON.stringify(bios);
 
   bios.forEach(bio => {
@@ -38,7 +38,7 @@ const createSkills = (fetchData) => {
 
   const skills = fetchData.skills;
 
-  // Save to localStorage -> avoid unnecessary fetches when initiating update
+  // Save to localStorage -> avoid fetches when initiating update
   localStorage.skills = JSON.stringify(skills);
 
   skills.forEach(skill => {
@@ -65,7 +65,10 @@ const createWork = (fetchData) => {
 
   const jobs = fetchData.jobs;
 
-  editItemsContainer.classList.add('trio')
+  editItemsContainer.classList.add('trio');
+
+  // Save to localStorage -> avoid fetches when initiating update
+  localStorage.jobs = JSON.stringify(jobs);
 
   jobs.forEach(job => {
     editItemsContainer.innerHTML += workHtml(job.id, job.company, job.title, job.date_start, job.date_end, job.descr);
@@ -96,6 +99,9 @@ const createStudies = (fetchData) => {
 
   editItemsContainer.classList.add('trio');
 
+  // Save to localStorage -> avoid fetches when initiating update
+  localStorage.courses = JSON.stringify(courses);
+
   courses.forEach(course => {
     editItemsContainer.innerHTML += studiesHtml(course.id, course.title, course.institution, course.date_start, course.date_end, course.descr);
   });
@@ -124,6 +130,9 @@ const createPortfolio = (fetchData) => {
   const projects = fetchData.projects;
 
   editItemsContainer.classList.add('trio');
+
+  // Save to localStorage -> avoid fetches when initiating update
+  localStorage.projects = JSON.stringify(projects);
 
   projects.forEach(project => {
     editItemsContainer.innerHTML += portfolioHtml(project.id, project.title, project.prj_url, project.descr, project.img_src);

@@ -77,6 +77,8 @@ const initAboutUpdate = (id) => {
   inputAboutBio.value = bio;
   inputAboutImage.value = img_src;
   inputAboutPublished.checked = published == 1 ? true : false;
+
+  window.scrollTo(0, document.body.scrollHeight);
 }
 
 

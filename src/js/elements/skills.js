@@ -54,6 +54,8 @@ const initSkillsUpdate = (id, url) => {
 
   inputSkillsSkill.value = skill;
   inputSkillsIcon.value = icon;
+
+  window.scrollTo(0, document.body.scrollHeight);
 }
 
 

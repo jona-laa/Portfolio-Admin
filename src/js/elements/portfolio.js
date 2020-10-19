@@ -15,7 +15,7 @@ const portfolioHtml = (id, title, url, descr, image) => `
 
         <div class="edit-items_controls">
           <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, portfolioUrl, createPortfolio)"><i class="fas fa-trash-alt fa-1x"></i></button>
-          <button class="btn update" id="update-${id}" value="update" onclick="initPortfolioUpdate(${id}, portfolioUrl)"><i class="fas fa-edit fa-1x"></i></button>
+          <button class="btn update" id="update-${id}" value="update" onclick="initPortfolioUpdate(${id})"><i class="fas fa-edit fa-1x"></i></button>
         </div>
       </div>
     `;
@@ -55,21 +55,19 @@ const portfolioFetchObject = (id) =>
   * @param   {string}     id              Post ID
   * @param   {string}     url             API-url
 */
-const initPortfolioUpdate = (id, url) => {
+const initPortfolioUpdate = (id) => {
   updateId = id;
 
-  fetch(`${url}?id=${id}`)
-    .then(res => res.json())
-    .then(data => {
-      const { id, title, prj_url, descr, img_src } = data.projects[0];
+  const objIndex = JSON.parse(localStorage.projects).findIndex(obj => obj.id == id);
 
-      inputPortfolioTitle.value = title;
-      inputPortfoliUrl.value = prj_url;
-      inputPortfolioDescr.value = descr;
-      inputPortfolioImage.value = img_src;
+  const { title, prj_url, descr, img_src } = JSON.parse(localStorage.projects)[objIndex];
 
-      window.scrollTo(0, document.body.scrollHeight);
-    })
+  inputPortfolioTitle.value = title;
+  inputPortfoliUrl.value = prj_url;
+  inputPortfolioDescr.value = descr;
+  inputPortfolioImage.value = img_src;
+  
+  window.scrollTo(0, document.body.scrollHeight);
 }
 
 

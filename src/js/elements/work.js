@@ -15,7 +15,7 @@ const workHtml = (id, company, title, start, end, descr) => `
         <p>${descr}</p>
 
         <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, workUrl, createWork)"><i class="fas fa-trash-alt fa-1x"></i></button>
-        <button class="btn update" id="update-${id}" value="update" onclick="initWorkUpdate(${id}, workUrl)"><i class="fas fa-edit fa-1x"></i></button>
+        <button class="btn update" id="update-${id}" value="update" onclick="initWorkUpdate(${id})"><i class="fas fa-edit fa-1x"></i></button>
       </div>
     `;
 
@@ -57,22 +57,20 @@ const workFetchObject = (id) =>
   * @param   {string}     id              Post ID
   * @param   {string}     url             API-url
 */
-const initWorkUpdate = (id, url) => {
+const initWorkUpdate = (id) => {
   updateId = id;
 
-  fetch(`${url}?id=${id}`)
-    .then(res => res.json())
-    .then(data => {
-      const { id, company, title, date_start, date_end, descr } = data.jobs[0];
+  const objIndex = JSON.parse(localStorage.jobs).findIndex(obj => obj.id == id);
 
-      inputWorkCompany.value = company;
-      inputWorkTitle.value = title;
-      inputWorkStart.value = date_start;
-      inputWorkEnd.value = date_end;
-      inputWorkDescr.value = descr;
+  const { company, title, date_start, date_end, descr } = JSON.parse(localStorage.jobs)[objIndex];
 
-      window.scrollTo(0, document.body.scrollHeight);
-    })
+  inputWorkCompany.value = company;
+  inputWorkTitle.value = title;
+  inputWorkStart.value = date_start;
+  inputWorkEnd.value = date_end;
+  inputWorkDescr.value = descr;
+
+  window.scrollTo(0, document.body.scrollHeight);
 }
 
 
