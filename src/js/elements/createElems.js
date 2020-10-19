@@ -8,6 +8,7 @@ const createBio = (fetchData) => {
 
   const bios = fetchData.bios;
 
+  // Save to localStorage -> avoid unnecessary fetches when initiating update
   localStorage.about = JSON.stringify(bios);
 
   bios.forEach(bio => {
@@ -36,6 +37,9 @@ const createSkills = (fetchData) => {
   editItemsContainer.classList.remove('trio');
 
   const skills = fetchData.skills;
+
+  // Save to localStorage -> avoid unnecessary fetches when initiating update
+  localStorage.skills = JSON.stringify(skills);
 
   skills.forEach(skill => {
     editItemsContainer.innerHTML += skillsHtml(skill.id, skill.skill, skill.icon);

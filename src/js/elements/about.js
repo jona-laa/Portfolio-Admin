@@ -27,7 +27,7 @@ const aboutItemHtml = (id, heading, bio, image, published) =>
 
   <div class="edit-items_controls">
   <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, aboutUrl, createBio)"><i class="fas fa-trash-alt fa-1x"></i></button>
-  <button class="btn update" id="update-${id}" value="update" onclick="initAboutUpdate(${id}, aboutUrl)"><i class="fas fa-edit fa-1x"></i></button>
+  <button class="btn update" id="update-${id}" value="update" onclick="initAboutUpdate(${id})"><i class="fas fa-edit fa-1x"></i></button>
   </div>
 `;
 
@@ -66,7 +66,7 @@ const aboutFetchObject = (id) =>
   * @param   {string}     id              Post ID
   * @param   {string}     url             API-url
 */
-const initAboutUpdate = (id, url) => {
+const initAboutUpdate = (id) => {
   updateId = id;
 
   const objIndex = JSON.parse(localStorage.about).findIndex(obj => obj.id == id);
@@ -77,19 +77,6 @@ const initAboutUpdate = (id, url) => {
   inputAboutBio.value = bio;
   inputAboutImage.value = img_src;
   inputAboutPublished.checked = published == 1 ? true : false;
-
-  // fetch(`${url}?id=${id}`)
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     const { id, heading, bio, img_src, published } = data.bios[0];
-
-  //     inputAboutHeading.value = heading;
-  //     inputAboutBio.value = bio;
-  //     inputAboutImage.value = img_src;
-  //     inputAboutPublished.checked = published == 1 ? true : false;
-
-  //     window.scrollTo(0, document.body.scrollHeight);
-  //   })
 }
 
 

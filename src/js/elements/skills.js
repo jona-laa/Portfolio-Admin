@@ -10,7 +10,7 @@ const skillsHtml = (id, skill, icon) => `
         <span>${skill}</span>
 
         <button class="btn delete" id="delete-${id}" value="delete" onclick="deletePost(${id}, skillsUrl, createSkills)"><i class="fas fa-trash-alt fa-1x"></i></button>
-        <button class="btn update" id="update-${id}" value="update" onclick="initSkillsUpdate(${id}, skillsUrl)"><i class="fas fa-edit fa-1x"></i></button>
+        <button class="btn update" id="update-${id}" value="update" onclick="initSkillsUpdate(${id})"><i class="fas fa-edit fa-1x"></i></button>
       </div>
       
     `
@@ -48,16 +48,12 @@ const skillsFetchObject = (id) =>
 const initSkillsUpdate = (id, url) => {
   updateId = id;
 
-  fetch(`${url}?id=${id}`)
-    .then(res => res.json())
-    .then(data => {
-      const { skill, icon } = data.skills[0];
+  const objIndex = JSON.parse(localStorage.skills).findIndex(obj => obj.id == id);
 
-      inputSkillsSkill.value = skill;
-      inputSkillsIcon.value = icon;
+  const { skill, icon } = JSON.parse(localStorage.skills)[objIndex];
 
-      window.scrollTo(0, document.body.scrollHeight);
-    })
+  inputSkillsSkill.value = skill;
+  inputSkillsIcon.value = icon;
 }
 
 
