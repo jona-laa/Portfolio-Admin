@@ -43,9 +43,8 @@ const skillsFetchObject = (id) =>
 
 /* Get Post and Auto Fill Input Fields
   * @param   {string}     id              Post ID
-  * @param   {string}     url             API-url
 */
-const initSkillsUpdate = (id, url) => {
+const initSkillsUpdate = (id) => {
   updateId = id;
 
   const objIndex = JSON.parse(localStorage.skills).findIndex(obj => obj.id == id);

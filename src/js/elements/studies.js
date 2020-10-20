@@ -56,7 +56,6 @@ const studiesFetchObject = (id) =>
 
 /* Get Post and Auto Fill Input Fields
   * @param   {string}     id              Post ID
-  * @param   {string}     url             API-url
 */
 const initStudiesUpdate = (id) => {
   updateId = id;

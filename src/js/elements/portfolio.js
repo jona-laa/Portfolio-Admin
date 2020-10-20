@@ -53,7 +53,6 @@ const portfolioFetchObject = (id) =>
 
 /* Get Post and Auto Fill Input Fields
   * @param   {string}     id              Post ID
-  * @param   {string}     url             API-url
 */
 const initPortfolioUpdate = (id) => {
   updateId = id;
