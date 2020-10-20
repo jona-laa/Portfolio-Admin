@@ -74,24 +74,24 @@ const initPortfolioUpdate = (id) => {
 const portfolioFormHtml = () => `
       <form id="edit-form">
         <div>
-          <label for="title">Title</label>
           <input type="text" name="title" id="title" placeholder="Title" required>
+          <label for="title">Title</label>
         </div>
         <div>
-          <label for="url">Url</label>
           <input type="text" name="url" id="url" placeholder="Url" required>
+          <label for="url">Url</label>
         </div>
         <div>
-          <label for="descr">Description</label>
           <input type="text" name="descr" id="descr" placeholder="Description" required>
+          <label for="descr">Description</label>
         </div>
         <div>
-          <label for="image">Image</label>
           <input type="text" name="image" id="image" placeholder="Image" required>
+          <label for="image">Image</label>
         </div>
         <div class="form_buttons">
-          <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, portfolioUrl, portfolioFetchObject, createPortfolio)"> 
           <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
+          <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, portfolioUrl, portfolioFetchObject, createPortfolio)"> 
         </div>
       </form>
   `;

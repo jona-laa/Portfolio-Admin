@@ -62,17 +62,17 @@ const initSkillsUpdate = (id) => {
 const skillsFormHtml = () => `
       <form id="edit-form">
         <div>
-          <label for="skill">Skill</label>
           <input type="text" name="skill" id="skill" placeholder="Skill" required>
+          <label for="skill">Skill</label>
         </div>
         <div>
-          <label for="icon">Icon</label>
           <input type="text" name="icon" id="icon" placeholder="Icon" required>
+          <label for="icon">Icon</label>
         </div>
         <div class="form_buttons">
-          <input type="submit" value="Submit" id="submit" class="btn" 
-        onclick="updateOrAdd(event, updateId, skillsUrl, skillsFetchObject, createSkills)"> 
           <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
+          <input type="submit" value="Submit" id="submit" class="btn" 
+          onclick="updateOrAdd(event, updateId, skillsUrl, skillsFetchObject, createSkills)"> 
         </div>
         </form>
   `

@@ -85,22 +85,24 @@ const initAboutUpdate = (id) => {
 const aboutFormHtml = () => `
       <form id="edit-form">
         <div>
-          <label for="heading">Heading</label>
           <input type="text" name="heading" id="heading" placeholder="Heading" required>
+          <label for="heading">Heading</label>
         </div>
         <div>
-          <label for="image">Image</label>
           <input type="text" name="image" id="image" placeholder="Image Src" required>
+          <label for="image">Image</label>
         </div>
-        <textarea id="bio" placeholder="About Text" required></textarea>
+        <div class="textarea">
+          <textarea id="bio" placeholder="About Text" required></textarea>
+          <label for="bio">About Me</label>
+        </div>
         <div class="form_checkbox">
-          <label for="published">Publish?</label>
           <input type="checkbox" id="published" name="published">
+          <label for="published">Publish?</label>
         </div>
         <div class="form_buttons">
-        <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, aboutUrl, aboutFetchObject, createBio)"> 
-        
-        <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
+          <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
+          <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, aboutUrl, aboutFetchObject, createBio)"> 
         </div>
         </form>
   `

@@ -77,28 +77,28 @@ const initWorkUpdate = (id) => {
 const workFormHtml = () => `
       <form id="edit-form">
         <div>
-          <label for="company">Company</label>
           <input type="text" name="company" id="company" placeholder="Company" required>
+          <label for="company">Company</label>
         </div>
         <div>
-          <label for="title">Title</label>
           <input type="text" name="title" id="title" placeholder="Title" required>
+          <label for="title">Title</label>
         </div>
         <div>
-          <label for="start-date">Start Date</label>
           <input type="text" name="start-date" id="start-date" placeholder="Start Date" required>
+          <label for="start-date">Start Date</label>
         </div>
         <div>
-          <label for="end-date">End Date</label>
           <input type="text" name="end-date" id="end-date" placeholder="End Date" required>
+          <label for="end-date">End Date</label>
         </div>
         <div>
-          <label for="descr">Description</label>
           <input type="text" name="descr" id="descr" placeholder="Description" required>
+          <label for="descr">Description</label>
         </div>
         <div class="form_buttons">
-          <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, workUrl, workFetchObject, createWork)"> 
           <input type="submit" value="Cancel" id="submit" class="btn" onclick="cancelForm(event)">
+          <input type="submit" value="Submit" id="submit" class="btn" onclick="updateOrAdd(event, updateId, workUrl, workFetchObject, createWork)"> 
         </div>
       </form>
   `;

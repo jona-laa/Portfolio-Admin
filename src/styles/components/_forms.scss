@@ -21,6 +21,7 @@ form {
 
   div {
     width: 49%;
+    @include flex(column-reverse); 
     @include maxWidth(600px) {
       width: 100%;
     }
@@ -43,10 +44,18 @@ form {
     &:focus {
       outline-color: lighten($darkblue, 80%);
     }
+
+    &:focus + label {
+      display: block;
+    }
   }
 
   textarea {
     height: 150px;
+  }
+  
+  .textarea {
+    width: 100%;
   }
 
   .form_checkbox {
