@@ -58,7 +58,7 @@ if (!isset($_SESSION['token'])) {
     <section id="edit" class="section-padding">
     </section>
 
-    <div class="feedback">
+    <div class="feedback" onclick="fadeOutElement(1000, 0, feedbackDiv)">
       <span id="feedback-message"></span>
     </div>
 
